@@ -1,10 +1,11 @@
-import React from 'react';
+import React, { useRef } from 'react';
 import { KeyboardAvoidingView, Text, View, ScrollView, StyleSheet } from 'react-native';
 import { Controller, useForm } from 'react-hook-form';
 import { SafeAreaView, useSafeAreaInsets } from 'react-native-safe-area-context';
-import { Button, Space, TextField } from '../../common/components';
+import PhoneInput from 'react-native-phone-input';
 
 import LoginIllustration from './assets/login.svg';
+import { Button, Space, TextField } from '../../common/components';
 import { ChevronRightIcon } from '../../common/assets/icons';
 import Icon from '../../common/components/Icon';
 import colors from '../../constants/colors';
@@ -12,12 +13,14 @@ import { fontSize } from '../../constants/typography';
 import { useAppDispatch } from '../../common/store';
 import { LoginBody } from './api/user';
 import { signIn } from './store/user';
+import PhoneNumberInput from '../../common/components/PhoneInput';
 
 interface LoginScreenProps {}
 
 const LoginScreen: React.FunctionComponent<LoginScreenProps> = () => {
   const insets = useSafeAreaInsets();
   const dispatch = useAppDispatch();
+  const phoneInputRef = useRef<PhoneInput>(null);
 
   const { control, handleSubmit } = useForm<LoginBody>({
     defaultValues: {
@@ -28,8 +31,15 @@ const LoginScreen: React.FunctionComponent<LoginScreenProps> = () => {
 
   const onSubmit = async (data: LoginBody) => {
     try {
-      await dispatch(signIn({ data, type: 'consultant' })).unwrap();
+      await dispatch(
+        signIn({
+          phoneNumber: data.phoneNumber.replaceAll(' ', ''),
+          password: data.password,
+        }),
+      ).unwrap();
+      console.log('tu');
     } catch (error: any) {
+      console.log('error', JSON.stringify(error, null, 2));
       const err = error + '';
       //    Toast.show({ type: 'error', text1: err });
     }
@@ -46,18 +56,31 @@ const LoginScreen: React.FunctionComponent<LoginScreenProps> = () => {
           paddingBottom: insets.bottom + 20,
         }}>
         <View style={{ alignSelf: 'center', alignItems: 'center' }}>
-          <Text style={{ fontWeight: 'bold', fontSize: fontSize.extraLarge }}>Naziv Aplikacije</Text>
+          <Text style={{ fontWeight: 'bold', fontSize: fontSize.extraLarge, marginTop: 20 }}>Naziv Aplikacije</Text>
           <View style={{ alignSelf: 'center' }}>
             <Icon icon={LoginIllustration} width={300} height={300} />
           </View>
         </View>
         <View style={{ width: '100%', paddingHorizontal: 23 }}>
           <View>
-            <TextField placeholder="Broj mobitela" />
+            <Controller
+              name="phoneNumber"
+              control={control}
+              render={({ field: { onChange, value } }) => (
+                <PhoneNumberInput onChange={onChange} initialValue={value || undefined} phoneInputRef={phoneInputRef} />
+              )}
+            />
+
             <Space height={10} />
-            <TextField placeholder="Lozinka" />
+            <Controller
+              name="password"
+              control={control}
+              render={({ field: { onChange, value } }) => (
+                <TextField placeholder="Lozinka" value={value} onChangeText={onChange} secureTextEntry />
+              )}
+            />
             <Space height={24} />
-            <Button variant="primary" title="Prijava" />
+            <Button variant="primary" title="Prijava" onPress={handleSubmit(onSubmit)} />
             <Space height={29} />
             <View style={{ flexDirection: 'row', alignItems: 'center', alignSelf: 'center' }}>
               <Text style={{ color: colors.green }}>Kreiranje računa</Text>

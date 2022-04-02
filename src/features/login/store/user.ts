@@ -1,74 +1,51 @@
+import AsyncStorage from '@react-native-async-storage/async-storage';
 import { createSlice, createAsyncThunk, PayloadAction } from '@reduxjs/toolkit';
 
-import { login, LoginBody, loginParty, LoginPartyBody, LoginResponse } from '@features/login/api/login';
 import { RootState } from '../../../common/store';
+import { queryClient } from '../../../misc/queryClient';
+import { login, LoginBody, LoginResponse } from '../api/user';
 
 interface UserState {
   signedIn: boolean;
   isRestoring: boolean;
   isLoading: boolean;
+  user: LoginResponse | null;
 }
 
 const initialState: UserState = {
   signedIn: false,
   isRestoring: true,
   isLoading: false,
+  user: null,
 };
 
-export const signIn = createAsyncThunk<any, LoginBody, { state: RootState }>('user/signIn', async ({ data, type }, thunkApi) => {
-  const response = await login({ ...(data as LoginBody) });
+export const signIn = createAsyncThunk<LoginResponse, LoginBody, { state: RootState }>('user/signIn', async (data, thunkApi) => {
+  console.log('podaci', data);
+  const response = await login(data);
 
-  // Something has gone wrong with login
-  if (!response.isSuccess) return thunkApi.rejectWithValue(response.errorMessage);
+  // Save to AsyncStorage
+  await AsyncStorage.setItem('auth', JSON.stringify(response));
 
-  return {};
+  return response;
 });
 
 export const restoreAuth = createAsyncThunk('user/restoreAuth', async (_, { rejectWithValue }) => {
-  // Get tokens from the MMKV storage
-  const auth = storage.getString(StorageKey.AUTH);
+  console.log('restoram');
+  // Get tokens from the storage storage
+  const auth = await AsyncStorage.getItem('auth');
+  console.log('restoram', auth);
+  if (!auth) return rejectWithValue('No token!');
 
-  if (!auth) return rejectWithValue('No token');
-
-  // Parse tokens
-  const tokens: LoginResponse = JSON.parse(auth);
-
-  // Add token to api header
-  api.defaults.headers.common = {
-    Authorization: `Bearer ${tokens.accessToken}`,
-    'X-Expo-Token': mobileToken,
-  };
-
-  // Fetch user data
-  const userData = await userMe();
-  // Warm up the backend for data fetching
-  warmUp();
-
-  chatwootApi.defaults.headers.common = {
-    api_access_token: userData.chatAccessToken,
-  };
+  const userData = JSON.parse(auth);
 
   return userData;
 });
 
-export const refetchUser = createAsyncThunk('user/refetch', async () => {
-  // Fetch user data
-  const user = await userMe();
-  return user;
-});
-
 export const signOut = createAsyncThunk('user/signOut', async () => {
-  try {
-    const mobileToken = await getExpoToken();
-    logout(mobileToken);
-  } catch (err) {
-  } finally {
-    // Clear react-query cache
-    queryClient.clear();
-
-    // Remove everything from MMKV storage
-    storage.clearAll();
-  }
+  console.log('u sign out');
+  // Clear react-query cache
+  queryClient.clear();
+  await AsyncStorage.removeItem('auth');
 });
 
 export const userSlice = createSlice({
@@ -79,29 +56,24 @@ export const userSlice = createSlice({
     builder.addCase(signIn.pending, (state) => {
       state.isLoading = true;
     });
-    builder.addCase(signIn.fulfilled, (state, action: PayloadAction<UserResponse>) => {
+    builder.addCase(signIn.fulfilled, (state, action: PayloadAction<LoginResponse>) => {
       state.isLoading = false;
       state.signedIn = true;
       state.user = action.payload;
-      state.userType = action.payload.partyId ? 'party' : 'consultant';
     });
     builder.addCase(signIn.rejected, (state) => {
       state.isLoading = false;
     });
-    builder.addCase(restoreAuth.fulfilled, (state, action: PayloadAction<UserResponse>) => {
+    builder.addCase(restoreAuth.fulfilled, (state, action: PayloadAction<LoginResponse>) => {
       state.signedIn = true;
       state.isRestoring = false;
       state.user = action.payload;
-      state.userType = action.payload.partyId ? 'party' : 'consultant';
     });
     builder.addCase(restoreAuth.rejected, (state) => {
       state.isRestoring = false;
     });
     builder.addCase(signOut.fulfilled, (state) => {
       state.signedIn = false;
-    });
-    builder.addCase(refetchUser.fulfilled, (state, action: PayloadAction<UserResponse>) => {
-      state.user = { ...state.user, ...action.payload };
     });
   },
 });

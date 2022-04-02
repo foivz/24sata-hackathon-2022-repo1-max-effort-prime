@@ -13,29 +13,6 @@ import { RootStackParamList, RootTabParamList } from '../../types';
 import ExpensesScreen from '../features/expenses/ExpensesScreen';
 import GuestStack from './GuestNavigator';
 
-const Navigation = () => {
-  return (
-    <NavigationContainer>
-      {/* <RootNavigator /> */}
-      <GuestStack />
-    </NavigationContainer>
-  );
-};
-
-/**
- * A root stack navigator is often used for displaying modals on top of all other content.
- * https://reactnavigation.org/docs/modal
- */
-const Stack = createNativeStackNavigator<RootStackParamList>();
-
-function RootNavigator() {
-  return (
-    <Stack.Navigator>
-      <Stack.Screen name="Root" component={BottomTabNavigator} options={{ headerShown: false }} />
-    </Stack.Navigator>
-  );
-}
-
 const BottomTab = createBottomTabNavigator<RootTabParamList>();
 
 const BottomTabNavigator = () => {
@@ -93,4 +70,4 @@ const BottomTabNavigator = () => {
   );
 };
 
-export default Navigation;
+export default BottomTabNavigator;
