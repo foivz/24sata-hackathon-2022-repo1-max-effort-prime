@@ -1,8 +1,8 @@
 import React from 'react';
-import { View, Text } from 'react-native';
+import { View, Text, FlatList } from 'react-native';
 import { ChevronRightIcon } from '../../../common/assets/icons';
 
-import { Avatar } from '../../../common/components';
+import { Avatar, Divider } from '../../../common/components';
 import Icon from '../../../common/components/Icon';
 import colors from '../../../constants/colors';
 
@@ -14,11 +14,31 @@ interface SplitExpensesScreenProps {}
 const SplitExpensesScreen: React.FunctionComponent<SplitExpensesScreenProps> = () => {
   return (
     <View>
-      <Text style={{ fontWeight: 'bold', fontSize: fontSize.large }}>Podijeli trošak</Text>
-      <Group name="Obitelj" />
+      <Text style={{ fontWeight: 'bold', fontSize: fontSize.large, marginBottom: 30 }}>Podijeli trošak</Text>
+
+      <FlatList
+        data={[
+          {
+            id: '1',
+            name: 'Obitelj',
+          },
+          {
+            id: '2',
+            name: 'Frendovi',
+          },
+          {
+            id: '3',
+            name: 'Cimeri',
+          },
+        ]}
+        renderItem={({ item }) => <Group name={item.name} />}
+        ItemSeparatorComponent={() => <Divider />}
+      />
+
+      {/* <Group name="Obitelj" />
       <Group name="Frendovi" />
       <Group name="Bossevi" />
-      <Group name="Bossioničari" />
+      <Group name="Bossioničari" /> */}
     </View>
   );
 };

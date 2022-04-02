@@ -19,7 +19,7 @@ const SplitExpensesSheet: React.FunctionComponent<SplitExpensesSheetProps> = ({ 
       enablePanDownToClose
       handleComponent={() => null}
       backdropComponent={(props) => <BottomSheetBackdrop disappearsOnIndex={-1} appearsOnIndex={0} {...props} />}>
-      <View style={{ flex: 1 }}>
+      <View style={{ flex: 1, paddingHorizontal: 20, marginTop: 32 }}>
         <SplitExpensesNavigator />
       </View>
     </BottomSheetModal>

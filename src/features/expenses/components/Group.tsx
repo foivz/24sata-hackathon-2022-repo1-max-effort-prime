@@ -19,7 +19,7 @@ const Group: React.FunctionComponent<GroupProps> = ({ name }) => {
 
   return (
     <TouchableOpacity onPress={() => navigation.navigate(screen.SPLIT_EXPENSES_SHEET_PRICES)}>
-      <Text style={{ color: colors.black, fontWeight: 'bold', fontSize: fontSize.normal }}>{name}</Text>
+      <Text style={{ color: colors.black, fontWeight: 'bold', fontSize: fontSize.normal, marginBottom: 12 }}>{name}</Text>
       <View style={{ flexDirection: 'row', alignItems: 'center', justifyContent: 'space-between' }}>
         <View style={{ flexDirection: 'row', alignItems: 'center' }}>
           <Avatar />

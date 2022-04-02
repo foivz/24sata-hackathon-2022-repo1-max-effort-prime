@@ -2,7 +2,7 @@ import React from 'react';
 import { View, Text, Image, TouchableOpacity, FlatList, StyleSheet } from 'react-native';
 import { PlusIcon, SearchIcon } from '../../assets/icons';
 
-import { ActionButton, TextField } from '../../components';
+import { ActionButton, Divider, TextField } from '../../components';
 import colors from '../../../constants/colors';
 import useModal from '../../../hooks/useModal';
 import { fontSize } from '../../../constants/typography';
@@ -35,7 +35,7 @@ const SheetContent: React.FunctionComponent<SheetContentProps> = () => {
               />
               <Text style={{ color: colors.gray, fontSize: fontSize.smallToNormal }}>Kreiraj proizvod "Mlijeko"</Text>
             </View>
-            <View style={{ height: 1, backgroundColor: colors.tabBarBackground, marginVertical: 16 }} />
+            <Divider />
           </View>
         )}
         renderItem={({ item }) => (
@@ -47,7 +47,7 @@ const SheetContent: React.FunctionComponent<SheetContentProps> = () => {
             <Text style={{ fontSize: fontSize.smallToNormal }}>Dukat Trajno mlijeko</Text>
           </TouchableOpacity>
         )}
-        ItemSeparatorComponent={() => <View style={{ height: 1, backgroundColor: colors.tabBarBackground, marginVertical: 16 }} />}
+        ItemSeparatorComponent={() => <Divider />}
       />
     </View>
   );

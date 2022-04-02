@@ -3,6 +3,7 @@ import { View, Text } from 'react-native';
 import { TextInput } from 'react-native-gesture-handler';
 import { Avatar } from '../../../common/components';
 import colors from '../../../constants/colors';
+import { fontSize } from '../../../constants/typography';
 
 interface PayerProps {}
 
@@ -24,7 +25,7 @@ const Payer: React.FunctionComponent<PayerProps> = () => {
           justifyContent: 'space-between',
         }}>
         <TextInput value="80" style={{ marginRight: 10 }} keyboardType="numeric" />
-        <Text style={{ color: colors.darkSouls }}>HRK</Text>
+        <Text style={{ color: colors.darkSouls, fontSize: fontSize.small }}>HRK</Text>
       </View>
     </View>
   );
