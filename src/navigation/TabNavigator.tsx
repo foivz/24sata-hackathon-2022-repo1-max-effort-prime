@@ -1,14 +1,14 @@
 import * as React from 'react';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 
-import TabOneScreen from '../../screens/TabOneScreen';
 import ShoppingListScreen from '../features/shopping-list/ShoppingListScreen';
-import { BarsSolidIcon, DollarSignSolidIcon, HouseSolidIcon, ListCheckSolidIcon, UsersSolidIcon } from '../common/assets/icons/navigation';
+import ExpensesStack from '../features/expenses/navigation/ExpensesStack';
+import TabBarIcon from '../common/components/TabBarIcon';
+import DashboardScreen from '../features/dashboard/DashboardScreen';
 
 import colors from '../constants/colors';
-import TabBarIcon from '../common/components/TabBarIcon';
+import { BarsSolidIcon, DollarSignSolidIcon, HouseSolidIcon, ListCheckSolidIcon, UsersSolidIcon } from '../common/assets/icons/navigation';
 import { RootTabParamList } from '../../types';
-import ExpensesStack from '../features/expenses/navigation/ExpensesStack';
 
 const BottomTab = createBottomTabNavigator<RootTabParamList>();
 
@@ -20,7 +20,7 @@ const BottomTabNavigator = () => {
       sceneContainerStyle={{ backgroundColor: colors.tabBarBackground }}>
       <BottomTab.Screen
         name="TabOne"
-        component={TabOneScreen}
+        component={DashboardScreen}
         options={() => ({
           tabBarIcon: ({ color, size, focused }) => {
             return <TabBarIcon icon={HouseSolidIcon} color={color} size={size} focused={focused} />;

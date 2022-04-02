@@ -7,4 +7,5 @@ export default {
   weakMint: '#DFF0E5',
   whiteSmoke: '#F5F5F5',
   darkSouls: '#A3A3A3',
+  lynxWhite: '#F7F7F7',
 };
