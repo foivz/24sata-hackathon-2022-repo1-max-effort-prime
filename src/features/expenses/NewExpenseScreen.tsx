@@ -22,9 +22,9 @@ const NewExpenseScreen: React.FC<NewExpenseScreenProps> = () => {
   const splitExpensesSheetRef = useRef<BottomSheetModal>(null);
 
   return (
-    <SafeAreaView style={{ paddingHorizontal: 28 }} edges={['top', 'left', 'right']}>
+    <View style={{ paddingHorizontal: 28, marginTop: 50, flex: 1 }} edges={['top', 'left', 'right']}>
       <Text style={{ fontSize: fontSize.large, fontWeight: 'bold', marginBottom: 30 }}>💰 Novi trošak</Text>
-      <ScrollView showsVerticalScrollIndicator={false} contentContainerStyle={{ paddingBottom: insets.bottom + 30 }}>
+      <ScrollView style={{ flex: 1 }} showsVerticalScrollIndicator={false} contentContainerStyle={{ paddingBottom: insets.bottom + 30 }}>
         {/* Total */}
 
         <View style={{ backgroundColor: colors.white, paddingHorizontal: 20, paddingVertical: 22, borderRadius: 20 }}>
@@ -61,10 +61,10 @@ const NewExpenseScreen: React.FC<NewExpenseScreenProps> = () => {
         <ListItem />
         <ListItem />
       </ScrollView>
-      <Button title="Spremi trošak" variant="primary" containerStyle={{ bottom: insets.bottom + 20, paddingVertical: 15 }} />
+      <Button title="Spremi trošak" variant="primary" containerStyle={{ marginBottom: 20 }} />
       <AddProductSheet sheetRef={addProductSheetRef} />
       <SplitExpensesSheet sheetRef={splitExpensesSheetRef} />
-    </SafeAreaView>
+    </View>
   );
 };
 

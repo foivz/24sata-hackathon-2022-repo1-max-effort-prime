@@ -21,7 +21,12 @@ const ExpensesScreen = () => {
 
   const { data, isLoading } = useExpenses();
 
-  console.log(data);
+  const [selectedExpense, setSelectedExpense] = useState();
+
+  const handleOpenExpenseSheet = (expense) => {
+    setSelectedExpense(expense);
+    expensesSheet.current?.present();
+  };
 
   return (
     <SafeAreaView edges={['top', 'right', 'left']} style={styles.container}>
@@ -30,9 +35,13 @@ const ExpensesScreen = () => {
         <ActionButton icon={PlusIcon} color={colors.green} onPress={() => navigation.navigate(screen.NEW_EXPENSE)} />
       </View>
 
-      <FlatList data={data} renderItem={({ item }) => <ExpenseEntry expense={item} onPress={() => expensesSheet.current?.present()} />} />
+      <FlatList
+        data={data}
+        keyExtractor={(item) => item._id}
+        renderItem={({ item }) => <ExpenseEntry expense={item} onPress={() => handleOpenExpenseSheet(item)} />}
+      />
 
-      <ExpenseDetailsSheet sheetRef={expensesSheet} />
+      <ExpenseDetailsSheet sheetRef={expensesSheet} selected={selectedExpense} />
     </SafeAreaView>
   );
 };

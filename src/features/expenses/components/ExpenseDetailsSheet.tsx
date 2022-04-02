@@ -5,9 +5,10 @@ import SheetContent from './SheetContent';
 
 interface ExpenseDetailsSheetProps {
   sheetRef: React.MutableRefObject<BottomSheetModal | null>;
+  selected: any;
 }
 
-const ExpenseDetailsSheet: React.FunctionComponent<ExpenseDetailsSheetProps> = ({ sheetRef }) => {
+const ExpenseDetailsSheet: React.FunctionComponent<ExpenseDetailsSheetProps> = ({ sheetRef, selected }) => {
   const snapPoints = useMemo(() => ['83%'], []);
 
   return (
@@ -18,7 +19,7 @@ const ExpenseDetailsSheet: React.FunctionComponent<ExpenseDetailsSheetProps> = (
       enablePanDownToClose
       handleComponent={() => null}
       backdropComponent={(props) => <BottomSheetBackdrop disappearsOnIndex={-1} appearsOnIndex={0} {...props} />}>
-      <SheetContent />
+      <SheetContent selected={selected} />
     </BottomSheetModal>
   );
 };

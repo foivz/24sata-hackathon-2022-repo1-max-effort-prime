@@ -8,9 +8,10 @@ import { fontSize } from '../../../constants/typography';
 
 interface ListItemProps {
   containerStyle?: ViewStyle;
+  item: any;
 }
 
-const ListItem: React.FunctionComponent<ListItemProps> = ({ containerStyle }) => {
+const ListItem: React.FunctionComponent<ListItemProps> = ({ containerStyle, item }) => {
   return (
     <View
       style={[
@@ -27,15 +28,15 @@ const ListItem: React.FunctionComponent<ListItemProps> = ({ containerStyle }) =>
         containerStyle,
       ]}>
       <View style={{ flexDirection: 'row', alignItems: 'center' }}>
-        <Image source={require('../../shopping-list/assets/mleko.png')} style={{ width: 50, height: 50, marginRight: 18 }} />
+        <Image source={{ uri: item.imageUrl }} style={{ width: 50, height: 50, marginRight: 18 }} />
         <View>
-          <Text style={{ fontSize: fontSize.small }}>Dukat Trajno mlijeko</Text>
+          <Text style={{ fontSize: fontSize.small }}>{item.name}</Text>
           <Space height={3} />
-          <Text style={{ color: colors.gray, fontSize: fontSize.small }}>3 komada</Text>
+          <Text style={{ color: colors.gray, fontSize: fontSize.small }}>{item.quantity} komada</Text>
         </View>
       </View>
       <View style={{ backgroundColor: colors.whiteSmoke, borderRadius: 8, padding: 9, alignSelf: 'flex-start' }}>
-        <Text style={{ color: colors.gray }}>18 HRK</Text>
+        <Text style={{ color: colors.gray }}>{item.price} HRK</Text>
       </View>
     </View>
   );
