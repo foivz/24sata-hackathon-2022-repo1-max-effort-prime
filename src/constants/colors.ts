@@ -1,0 +1,11 @@
+export default {
+  tabBarBackground: '#E5E5E5',
+  white: '#FFFFFF',
+  black: '#000000',
+  green: '#22C55E',
+  gray: '#96A0A9',
+  weakMint: '#DFF0E5',
+  whiteSmoke: '#F5F5F5',
+  darkSouls: '#A3A3A3',
+  lynxWhite: '#F7F7F7',
+};
