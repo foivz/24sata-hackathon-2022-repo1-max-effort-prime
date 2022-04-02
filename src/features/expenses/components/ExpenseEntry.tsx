@@ -1,3 +1,4 @@
+import dayjs from 'dayjs';
 import React from 'react';
 import { View, Text, TouchableOpacity, TouchableOpacityProps } from 'react-native';
 import { ChevronRightIcon } from '../../../common/assets/icons';
@@ -5,10 +6,18 @@ import Icon from '../../../common/components/Icon';
 
 import colors from '../../../constants/colors';
 import { fontSize } from '../../../constants/typography';
+import { Expense } from '../types';
 
-interface ExpenseEntryProps extends TouchableOpacityProps {}
+import relativeTime from 'dayjs/plugin/relativeTime';
+import 'dayjs/locale/hr';
 
-const ExpenseEntry: React.FunctionComponent<ExpenseEntryProps> = ({ ...props }) => {
+dayjs.extend(relativeTime);
+
+interface ExpenseEntryProps extends TouchableOpacityProps {
+  expense: Expense;
+}
+
+const ExpenseEntry: React.FunctionComponent<ExpenseEntryProps> = ({ expense, ...props }) => {
   return (
     <TouchableOpacity
       style={{
@@ -23,8 +32,8 @@ const ExpenseEntry: React.FunctionComponent<ExpenseEntryProps> = ({ ...props }) 
       }}
       {...props}>
       <View>
-        <Text style={{ fontWeight: 'bold', marginBottom: 5, fontSize: fontSize.mediumLarge }}>167 HRK</Text>
-        <Text style={{ color: colors.gray, fontSize: fontSize.small }}>2. travnja</Text>
+        <Text style={{ fontWeight: 'bold', marginBottom: 5, fontSize: fontSize.mediumLarge }}>{expense.amount} HRK</Text>
+        <Text style={{ color: colors.gray, fontSize: fontSize.small }}>{dayjs(expense.createdAt).locale('hr').format('D. MMMM')}</Text>
       </View>
       <Icon icon={ChevronRightIcon} width={25} height={25} stroke={colors.green} />
     </TouchableOpacity>

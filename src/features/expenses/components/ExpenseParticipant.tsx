@@ -18,7 +18,7 @@ const ExpenseParticipant: React.FunctionComponent<ExpenseParticipant> = () => {
         justifyContent: 'space-between',
         borderRadius: 20,
         paddingHorizontal: 20,
-        paddingVertical: 10,
+        paddingVertical: 14,
         marginBottom: 12,
       }}>
       <View style={{ flexDirection: 'row', alignItems: 'center' }}>

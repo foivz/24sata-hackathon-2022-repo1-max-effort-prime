@@ -43,7 +43,7 @@ const NewExpenseScreen: React.FC<NewExpenseScreenProps> = () => {
             onPress={() => splitExpensesSheetRef.current?.present()}
           />
         </View>
-        <Space height={20} />
+        <Space height={30} />
         <Text style={styles.subtitle}>Trošak dijele</Text>
         <Space height={16} />
         <ExpenseParticipant />

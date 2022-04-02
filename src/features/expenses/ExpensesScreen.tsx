@@ -1,5 +1,5 @@
 import React, { useRef, useState } from 'react';
-import { StyleSheet, Text, View } from 'react-native';
+import { FlatList, StyleSheet, Text, View } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { BottomSheetModal } from '@gorhom/bottom-sheet';
 import { useNavigation } from '@react-navigation/native';
@@ -12,11 +12,16 @@ import { PlusIcon } from '../../common/assets/icons';
 import colors from '../../constants/colors';
 import { fontSize } from '../../constants/typography';
 import screen from '../../navigation/screens';
+import useExpenses from './hooks/useExpenses';
 
 const ExpensesScreen = () => {
   const [active, setActive] = useState<'redovna' | 'ponavljajuća'>('redovna');
   const expensesSheet = useRef<BottomSheetModal>(null);
   const navigation = useNavigation();
+
+  const { data, isLoading } = useExpenses();
+
+  console.log(data);
 
   return (
     <SafeAreaView edges={['top', 'right', 'left']} style={styles.container}>
@@ -25,9 +30,7 @@ const ExpensesScreen = () => {
         <ActionButton icon={PlusIcon} color={colors.green} onPress={() => navigation.navigate(screen.NEW_EXPENSE)} />
       </View>
 
-      <ExpenseEntry onPress={() => expensesSheet.current?.present()} />
-      <ExpenseEntry onPress={() => expensesSheet.current?.present()} />
-      <ExpenseEntry onPress={() => expensesSheet.current?.present()} />
+      <FlatList data={data} renderItem={({ item }) => <ExpenseEntry expense={item} onPress={() => expensesSheet.current?.present()} />} />
 
       <ExpenseDetailsSheet sheetRef={expensesSheet} />
     </SafeAreaView>
