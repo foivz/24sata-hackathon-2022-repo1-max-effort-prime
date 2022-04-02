@@ -9,6 +9,8 @@ enum screen {
   SPLIT_EXPENSES_SHEET_PRICES = 'SplitExpensesSheetPrices',
   MENU_STACK = 'MenuStack',
   MENU = 'Menu',
+  CHAT = 'Chat',
+  TAB_NAVIGATOR = 'TabNavigator',
 }
 
 export default screen;

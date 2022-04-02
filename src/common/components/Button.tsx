@@ -1,10 +1,9 @@
 import React, { useMemo } from 'react';
-import { Text, TouchableOpacity, TouchableOpacityProps, StyleSheet, ViewStyle, TextStyle } from 'react-native';
+import { Text, TouchableOpacity, TouchableOpacityProps, StyleSheet, ViewStyle, TextStyle, ActivityIndicator } from 'react-native';
 
 import Icon from './Icon';
 
 import colors from '../../constants/colors';
-import { fontSize } from '../../constants/typography';
 
 interface ButtonProps extends TouchableOpacityProps {
   title: string;
@@ -12,9 +11,10 @@ interface ButtonProps extends TouchableOpacityProps {
   containerStyle?: ViewStyle | ViewStyle[];
   textStyle?: TextStyle | TextStyle[];
   icon?: React.FC;
+  loading?: boolean;
 }
 
-const Button: React.FunctionComponent<ButtonProps> = ({ title, variant, containerStyle, icon, textStyle, ...props }) => {
+const Button: React.FunctionComponent<ButtonProps> = ({ title, variant, containerStyle, icon, textStyle, loading, ...props }) => {
   const textColor = useMemo(() => {
     switch (variant) {
       case 'primary':
@@ -26,8 +26,14 @@ const Button: React.FunctionComponent<ButtonProps> = ({ title, variant, containe
 
   return (
     <TouchableOpacity style={[styles.container, styles[variant], containerStyle]} {...props}>
-      {icon && <Icon icon={icon} style={styles.icon} />}
-      <Text style={[{ color: textColor, fontSize: 15 }, textStyle]}>{title}</Text>
+      {loading ? (
+        <ActivityIndicator color="white" />
+      ) : (
+        <>
+          {icon && <Icon icon={icon} style={styles.icon} />}
+          <Text style={[{ color: textColor, fontSize: 15 }, textStyle]}>{title}</Text>
+        </>
+      )}
     </TouchableOpacity>
   );
 };

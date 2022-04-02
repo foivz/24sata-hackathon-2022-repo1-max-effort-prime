@@ -2,7 +2,7 @@ import React, { useEffect } from 'react';
 import { NavigationContainer } from '@react-navigation/native';
 
 import GuestNavigator from './GuestNavigator';
-import TabNavigator from './TabNavigator';
+import UserNavigator from './UserNavigator';
 
 import { restoreAuth } from '../features/login/store/user';
 import { useAppDispatch, useAppSelector } from '../common/store';
@@ -18,7 +18,7 @@ export const Navigation = () => {
 
   if (isRestoring) return null;
 
-  return <NavigationContainer>{signedIn ? <TabNavigator /> : <GuestNavigator />}</NavigationContainer>;
+  return <NavigationContainer>{signedIn ? <UserNavigator /> : <GuestNavigator />}</NavigationContainer>;
 };
 
 export default Navigation;

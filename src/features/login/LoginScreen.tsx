@@ -10,7 +10,7 @@ import { ChevronRightIcon } from '../../common/assets/icons';
 import Icon from '../../common/components/Icon';
 import colors from '../../constants/colors';
 import { fontSize } from '../../constants/typography';
-import { useAppDispatch } from '../../common/store';
+import { useAppDispatch, useAppSelector } from '../../common/store';
 import { LoginBody } from './api/user';
 import { signIn } from './store/user';
 import PhoneNumberInput from '../../common/components/PhoneInput';
@@ -21,6 +21,7 @@ const LoginScreen: React.FunctionComponent<LoginScreenProps> = () => {
   const insets = useSafeAreaInsets();
   const dispatch = useAppDispatch();
   const phoneInputRef = useRef<PhoneInput>(null);
+  const { isLoading } = useAppSelector((state) => state.user);
 
   const { control, handleSubmit } = useForm<LoginBody>({
     defaultValues: {
@@ -56,7 +57,7 @@ const LoginScreen: React.FunctionComponent<LoginScreenProps> = () => {
           paddingBottom: insets.bottom + 20,
         }}>
         <View style={{ alignSelf: 'center', alignItems: 'center' }}>
-          <Text style={{ fontWeight: 'bold', fontSize: fontSize.extraLarge, marginTop: 20 }}>Naziv Aplikacije</Text>
+          <Text style={{ fontWeight: 'bold', fontSize: fontSize.extraLarge, marginTop: 20 }}>Šparo</Text>
           <View style={{ alignSelf: 'center' }}>
             <Icon icon={LoginIllustration} width={300} height={300} />
           </View>
@@ -80,7 +81,7 @@ const LoginScreen: React.FunctionComponent<LoginScreenProps> = () => {
               )}
             />
             <Space height={24} />
-            <Button variant="primary" title="Prijava" onPress={handleSubmit(onSubmit)} />
+            <Button variant="primary" title="Prijava" onPress={handleSubmit(onSubmit)} loading={isLoading} />
             <Space height={29} />
             <View style={{ flexDirection: 'row', alignItems: 'center', alignSelf: 'center' }}>
               <Text style={{ color: colors.green }}>Kreiranje računa</Text>
