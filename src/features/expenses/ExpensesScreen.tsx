@@ -20,8 +20,8 @@ const ExpensesScreen = () => {
 
   return (
     <SafeAreaView edges={['top', 'right', 'left']} style={styles.container}>
-      <View style={{ flexDirection: 'row', alignItems: 'center', justifyContent: 'space-between' }}>
-        <Text style={{ fontSize: fontSize.large, fontWeight: 'bold' }}>💰Troškovi</Text>
+      <View style={{ flexDirection: 'row', alignItems: 'center', justifyContent: 'space-between', marginBottom: 24 }}>
+        <Text style={{ fontSize: fontSize.extraLarge, fontWeight: 'bold' }}>💰 Troškovi</Text>
         <ActionButton icon={PlusIcon} color={colors.green} onPress={() => navigation.navigate(screen.NEW_EXPENSE)} />
       </View>
 

@@ -17,8 +17,7 @@ const BottomTabNavigator = () => {
   return (
     <BottomTab.Navigator
       initialRouteName="TabOne"
-      screenOptions={{ headerShown: false, tabBarActiveTintColor: colors.green, tabBarShowLabel: false }}
-      sceneContainerStyle={{ backgroundColor: colors.tabBarBackground }}>
+      screenOptions={{ headerShown: false, tabBarActiveTintColor: colors.green, tabBarShowLabel: false }}>
       <BottomTab.Screen
         name="TabOne"
         component={DashboardScreen}
