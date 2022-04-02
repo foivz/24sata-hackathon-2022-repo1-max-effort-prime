@@ -1,17 +1,15 @@
-/**
- * If you are not familiar with React Navigation, refer to the "Fundamentals" guide:
- * https://reactnavigation.org/docs/getting-started
- *
- */
-import { FontAwesome } from "@expo/vector-icons";
-import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
-import { NavigationContainer, DefaultTheme, DarkTheme } from "@react-navigation/native";
-import { createNativeStackNavigator } from "@react-navigation/native-stack";
 import * as React from "react";
+import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
+import { NavigationContainer } from "@react-navigation/native";
+import { createNativeStackNavigator } from "@react-navigation/native-stack";
 
 import TabOneScreen from "../../screens/TabOneScreen";
 import TabTwoScreen from "../../screens/TabTwoScreen";
 import { RootStackParamList, RootTabParamList } from "../../types";
+import { BarsSolidIcon, DollarSignSolidIcon, HouseSolidIcon, ListCheckSolidIcon, UsersSolidIcon } from "../assets/icons/navigation";
+
+import colors from "../constants/colors";
+import TabBarIcon from "../common/components/TabBarIcon";
 
 const Navigation = () => {
   return (
@@ -43,13 +41,19 @@ const BottomTab = createBottomTabNavigator<RootTabParamList>();
 
 const BottomTabNavigator = () => {
   return (
-    <BottomTab.Navigator initialRouteName="TabOne">
+    <BottomTab.Navigator
+      initialRouteName="TabOne"
+      screenOptions={{ headerShown: false }}
+      sceneContainerStyle={{ backgroundColor: colors.tabBarBackground }}
+    >
       <BottomTab.Screen
         name="TabOne"
         component={TabOneScreen}
         options={() => ({
           title: "Tab One",
-          tabBarIcon: ({ color }) => <TabBarIcon name="code" color={color} />,
+          tabBarIcon: ({ color, size, focused }) => {
+            return <TabBarIcon icon={HouseSolidIcon} color={color} size={size} focused={focused} />;
+          },
         })}
       />
       <BottomTab.Screen
@@ -57,18 +61,43 @@ const BottomTabNavigator = () => {
         component={TabTwoScreen}
         options={{
           title: "Tab Two",
-          tabBarIcon: ({ color }) => <TabBarIcon name="code" color={color} />,
+          tabBarIcon: ({ color, size, focused }) => {
+            return <TabBarIcon icon={ListCheckSolidIcon} color={color} size={size} focused={focused} />;
+          },
+        }}
+      />
+      <BottomTab.Screen
+        name="TabThree"
+        component={TabTwoScreen}
+        options={{
+          title: "Tab Three",
+          tabBarIcon: ({ color, size, focused }) => {
+            return <TabBarIcon icon={DollarSignSolidIcon} color={color} size={size} focused={focused} />;
+          },
+        }}
+      />
+      <BottomTab.Screen
+        name="TabFour"
+        component={TabTwoScreen}
+        options={{
+          title: "Tab Four",
+          tabBarIcon: ({ color, size, focused }) => {
+            return <TabBarIcon icon={UsersSolidIcon} color={color} size={size} focused={focused} />;
+          },
+        }}
+      />
+      <BottomTab.Screen
+        name="TabFive"
+        component={TabTwoScreen}
+        options={{
+          title: "Tab Five",
+          tabBarIcon: ({ color, size, focused }) => {
+            return <TabBarIcon icon={BarsSolidIcon} color={color} size={size} focused={focused} />;
+          },
         }}
       />
     </BottomTab.Navigator>
   );
-};
-
-/**
- * You can explore the built-in icon families and icons on the web at https://icons.expo.fyi/
- */
-const TabBarIcon = (props: { name: React.ComponentProps<typeof FontAwesome>["name"]; color: string }) => {
-  return <FontAwesome size={30} style={{ marginBottom: -3 }} {...props} />;
 };
 
 export default Navigation;
