@@ -4,12 +4,12 @@ import { NavigationContainer } from "@react-navigation/native";
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
 
 import TabOneScreen from "../../screens/TabOneScreen";
-import TabTwoScreen from "../../screens/TabTwoScreen";
-import { RootStackParamList, RootTabParamList } from "../../types";
-import { BarsSolidIcon, DollarSignSolidIcon, HouseSolidIcon, ListCheckSolidIcon, UsersSolidIcon } from "../assets/icons/navigation";
+import ShoppingListScreen from "../features/shopping-list/ShoppingListScreen";
+import { BarsSolidIcon, DollarSignSolidIcon, HouseSolidIcon, ListCheckSolidIcon, UsersSolidIcon } from "../common/assets/icons/navigation";
 
 import colors from "../constants/colors";
 import TabBarIcon from "../common/components/TabBarIcon";
+import { RootStackParamList, RootTabParamList } from "../../types";
 
 const Navigation = () => {
   return (
@@ -33,17 +33,13 @@ function RootNavigator() {
   );
 }
 
-/**
- * A bottom tab navigator displays tab buttons on the bottom of the display to switch screens.
- * https://reactnavigation.org/docs/bottom-tab-navigator
- */
 const BottomTab = createBottomTabNavigator<RootTabParamList>();
 
 const BottomTabNavigator = () => {
   return (
     <BottomTab.Navigator
       initialRouteName="TabOne"
-      screenOptions={{ headerShown: false }}
+      screenOptions={{ headerShown: false, tabBarActiveTintColor: colors.green, tabBarShowLabel: false }}
       sceneContainerStyle={{ backgroundColor: colors.tabBarBackground }}
     >
       <BottomTab.Screen
@@ -58,7 +54,7 @@ const BottomTabNavigator = () => {
       />
       <BottomTab.Screen
         name="TabTwo"
-        component={TabTwoScreen}
+        component={ShoppingListScreen}
         options={{
           title: "Tab Two",
           tabBarIcon: ({ color, size, focused }) => {
@@ -68,7 +64,7 @@ const BottomTabNavigator = () => {
       />
       <BottomTab.Screen
         name="TabThree"
-        component={TabTwoScreen}
+        component={ShoppingListScreen}
         options={{
           title: "Tab Three",
           tabBarIcon: ({ color, size, focused }) => {
@@ -78,7 +74,7 @@ const BottomTabNavigator = () => {
       />
       <BottomTab.Screen
         name="TabFour"
-        component={TabTwoScreen}
+        component={ShoppingListScreen}
         options={{
           title: "Tab Four",
           tabBarIcon: ({ color, size, focused }) => {
@@ -88,7 +84,7 @@ const BottomTabNavigator = () => {
       />
       <BottomTab.Screen
         name="TabFive"
-        component={TabTwoScreen}
+        component={ShoppingListScreen}
         options={{
           title: "Tab Five",
           tabBarIcon: ({ color, size, focused }) => {
