@@ -1,15 +1,16 @@
-import * as React from "react";
-import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
-import { NavigationContainer } from "@react-navigation/native";
-import { createNativeStackNavigator } from "@react-navigation/native-stack";
+import * as React from 'react';
+import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
+import { NavigationContainer } from '@react-navigation/native';
+import { createNativeStackNavigator } from '@react-navigation/native-stack';
 
-import TabOneScreen from "../../screens/TabOneScreen";
-import ShoppingListScreen from "../features/shopping-list/ShoppingListScreen";
-import { BarsSolidIcon, DollarSignSolidIcon, HouseSolidIcon, ListCheckSolidIcon, UsersSolidIcon } from "../common/assets/icons/navigation";
+import TabOneScreen from '../../screens/TabOneScreen';
+import ShoppingListScreen from '../features/shopping-list/ShoppingListScreen';
+import { BarsSolidIcon, DollarSignSolidIcon, HouseSolidIcon, ListCheckSolidIcon, UsersSolidIcon } from '../common/assets/icons/navigation';
 
-import colors from "../constants/colors";
-import TabBarIcon from "../common/components/TabBarIcon";
-import { RootStackParamList, RootTabParamList } from "../../types";
+import colors from '../constants/colors';
+import TabBarIcon from '../common/components/TabBarIcon';
+import { RootStackParamList, RootTabParamList } from '../../types';
+import ExpensesScreen from '../features/expenses/ExpensesScreen';
 
 const Navigation = () => {
   return (
@@ -40,13 +41,11 @@ const BottomTabNavigator = () => {
     <BottomTab.Navigator
       initialRouteName="TabOne"
       screenOptions={{ headerShown: false, tabBarActiveTintColor: colors.green, tabBarShowLabel: false }}
-      sceneContainerStyle={{ backgroundColor: colors.tabBarBackground }}
-    >
+      sceneContainerStyle={{ backgroundColor: colors.tabBarBackground }}>
       <BottomTab.Screen
         name="TabOne"
         component={TabOneScreen}
         options={() => ({
-          title: "Tab One",
           tabBarIcon: ({ color, size, focused }) => {
             return <TabBarIcon icon={HouseSolidIcon} color={color} size={size} focused={focused} />;
           },
@@ -56,7 +55,6 @@ const BottomTabNavigator = () => {
         name="TabTwo"
         component={ShoppingListScreen}
         options={{
-          title: "Tab Two",
           tabBarIcon: ({ color, size, focused }) => {
             return <TabBarIcon icon={ListCheckSolidIcon} color={color} size={size} focused={focused} />;
           },
@@ -64,9 +62,8 @@ const BottomTabNavigator = () => {
       />
       <BottomTab.Screen
         name="TabThree"
-        component={ShoppingListScreen}
+        component={ExpensesScreen}
         options={{
-          title: "Tab Three",
           tabBarIcon: ({ color, size, focused }) => {
             return <TabBarIcon icon={DollarSignSolidIcon} color={color} size={size} focused={focused} />;
           },
@@ -76,7 +73,6 @@ const BottomTabNavigator = () => {
         name="TabFour"
         component={ShoppingListScreen}
         options={{
-          title: "Tab Four",
           tabBarIcon: ({ color, size, focused }) => {
             return <TabBarIcon icon={UsersSolidIcon} color={color} size={size} focused={focused} />;
           },
@@ -86,7 +82,6 @@ const BottomTabNavigator = () => {
         name="TabFive"
         component={ShoppingListScreen}
         options={{
-          title: "Tab Five",
           tabBarIcon: ({ color, size, focused }) => {
             return <TabBarIcon icon={BarsSolidIcon} color={color} size={size} focused={focused} />;
           },
