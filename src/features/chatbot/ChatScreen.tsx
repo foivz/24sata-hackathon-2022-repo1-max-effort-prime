@@ -1,15 +1,21 @@
 import React, { useState } from 'react';
-import { Text, View, StyleSheet } from 'react-native';
+import { Text, View, StyleSheet, FlatList } from 'react-native';
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
 
-import { PlusIcon } from '../../common/assets/icons';
-import { ActionButton, Space, TextField } from '../../common/components';
-import colors from '../../constants/colors';
+import Message from './components/Message';
+import BottomBar from './components/BottomBar';
+import ChatActions from './components/ChatActions';
 
 import { fontSize } from '../../constants/typography';
-import { ChatAction } from './components';
+import colors from '../../constants/colors';
+import { Space } from '../../common/components';
 
 interface ChatScreenProps {}
+
+interface MessageType {
+  type: 'sent' | 'received';
+  message: string;
+}
 
 const ChatScreen: React.FC<ChatScreenProps> = () => {
   const insets = useSafeAreaInsets();
@@ -23,19 +29,42 @@ const ChatScreen: React.FC<ChatScreenProps> = () => {
     'Prikazi mjesecnu potrosnju po mjesecima',
   ];
 
+  const messages: MessageType[] = [
+    {
+      type: 'received',
+      message: 'Pozdrav! Ja sam tvoj chatbot Krešo! Klikni na ikonu su plusićom te odaberi kako ti mogu pomoći! 😉',
+    },
+    {
+      type: 'sent',
+      message: 'Promjena budžeta',
+    },
+    {
+      type: 'received',
+      message: 'Tvoj trenutni budžet iznosi 200 HRK. Unesi iznos novog željenog mjesečnog budžeta.',
+    },
+    {
+      type: 'sent',
+      message: '350 HRK',
+    },
+    {
+      type: 'received',
+      message: 'Promijenjeno! Tvoj novi mjesečni budžet iznosi 350 HRK',
+    },
+  ];
+
   return (
     <View style={{ paddingTop: insets.top, flex: 1, justifyContent: 'space-between' }}>
       <View>
-        <Text style={{ fontSize: fontSize.large, fontWeight: 'bold' }}>💬 Chatbot</Text>
+        <Text style={{ fontSize: fontSize.large, fontWeight: 'bold', paddingHorizontal: 15, marginBottom: 10 }}>💬 Chatbot</Text>
       </View>
 
-      <View>
-        <Text>E BOOOOOOOSSS</Text>
-        <Text>E BOOOOOOOSSS</Text>
-        <Text>E BOOOOOOOSSS</Text>
-        <Text>E BOOOOOOOSSS</Text>
-        <Text>E BOOOOOOOSSS</Text>
-      </View>
+      <FlatList
+        data={messages}
+        keyExtractor={(item) => item.message}
+        renderItem={({ item }) => <Message message={item.message} type={item.type} />}
+        ItemSeparatorComponent={() => <Space height={15} />}
+        contentContainerStyle={{ paddingTop: 20, paddingHorizontal: 15 }}
+      />
 
       <View
         style={{
@@ -46,35 +75,9 @@ const ChatScreen: React.FC<ChatScreenProps> = () => {
           borderBottomRightRadius: 14,
           paddingBottom: insets.bottom,
         }}>
-        {actionsExpanded && (
-          <View style={{ marginBottom: 15 }}>
-            <View style={{ flexDirection: 'row', alignItems: 'center', justifyContent: 'space-between' }}>
-              <ChatAction title="Koliko iznosi moj budzet" style={{ flex: 3 }} />
-              <Space width={10} />
-              <ChatAction title="O aplikaciji" style={{ flex: 2 }} />
-            </View>
-            <Space height={8} />
-            <View style={{ flexDirection: 'row', alignItems: 'center', justifyContent: 'space-between' }}>
-              <ChatAction title="Promjena budzeta" style={{ flex: 3 }} />
-              <Space width={12} />
-              <ChatAction title="Moje grupe" style={{ flex: 2 }} />
-            </View>
-            <Space height={8} />
-            <View style={{ flexDirection: 'row', alignItems: 'center', justifyContent: 'space-between' }}>
-              <ChatAction title="Prikazi prosjecnu potrosnju po mjesecima" style={{ flex: 1 }} />
-            </View>
-          </View>
-        )}
+        {actionsExpanded && <ChatActions />}
 
-        <View style={{ flexDirection: 'row', alignItems: 'center' }}>
-          <ActionButton
-            icon={PlusIcon}
-            style={{ borderRadius: 20, marginRight: 10 }}
-            onPress={() => setActionsExpanded(!actionsExpanded)}
-          />
-
-          <TextField value="boss" style={{ flex: 1 }} />
-        </View>
+        <BottomBar onButtonPress={() => setActionsExpanded(!actionsExpanded)} />
       </View>
     </View>
   );
