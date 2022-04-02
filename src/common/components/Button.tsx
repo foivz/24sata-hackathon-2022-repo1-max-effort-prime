@@ -4,6 +4,7 @@ import { Text, TouchableOpacity, TouchableOpacityProps, StyleSheet, ViewStyle, T
 import Icon from './Icon';
 
 import colors from '../../constants/colors';
+import { fontSize } from '../../constants/typography';
 
 interface ButtonProps extends TouchableOpacityProps {
   title: string;
@@ -31,7 +32,7 @@ const Button: React.FunctionComponent<ButtonProps> = ({ title, variant, containe
       ) : (
         <>
           {icon && <Icon icon={icon} style={styles.icon} />}
-          <Text style={[{ color: textColor, fontSize: 15 }, textStyle]}>{title}</Text>
+          <Text style={[{ color: textColor, fontSize: fontSize.normal }, textStyle]}>{title}</Text>
         </>
       )}
     </TouchableOpacity>
@@ -43,7 +44,7 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     justifyContent: 'center',
     alignItems: 'center',
-    paddingVertical: 10,
+    paddingVertical: 12,
     borderRadius: 14,
   },
   primary: {

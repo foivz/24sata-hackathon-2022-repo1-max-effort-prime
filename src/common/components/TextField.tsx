@@ -24,7 +24,7 @@ const styles = StyleSheet.create({
   container: {
     backgroundColor: colors.whiteSmoke,
     borderRadius: 10,
-    paddingVertical: 10,
+    paddingVertical: 12,
     flexDirection: 'row',
     alignItems: 'center',
     overflow: 'hidden',
