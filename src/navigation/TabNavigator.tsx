@@ -11,11 +11,13 @@ import colors from '../constants/colors';
 import TabBarIcon from '../common/components/TabBarIcon';
 import { RootStackParamList, RootTabParamList } from '../../types';
 import ExpensesScreen from '../features/expenses/ExpensesScreen';
+import GuestStack from './GuestNavigator';
 
 const Navigation = () => {
   return (
     <NavigationContainer>
-      <RootNavigator />
+      {/* <RootNavigator /> */}
+      <GuestStack />
     </NavigationContainer>
   );
 };
