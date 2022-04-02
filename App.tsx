@@ -2,6 +2,7 @@ import 'react-native-gesture-handler';
 import React from 'react';
 import { StyleSheet } from 'react-native';
 import { StatusBar } from 'expo-status-bar';
+import { ActionSheetProvider } from '@expo/react-native-action-sheet';
 import { SafeAreaProvider } from 'react-native-safe-area-context';
 import { GestureHandlerRootView } from 'react-native-gesture-handler';
 import { BottomSheetModalProvider } from '@gorhom/bottom-sheet';
@@ -24,18 +25,20 @@ const App = () => {
   } else {
     return (
       <Provider store={store}>
-        <GestureHandlerRootView style={styles.flex}>
-          <QueryClientProvider client={queryClient}>
-            <ModalProvider stack={modalStack}>
-              <BottomSheetModalProvider>
-                <SafeAreaProvider>
-                  <Navigation />
-                  <StatusBar />
-                </SafeAreaProvider>
-              </BottomSheetModalProvider>
-            </ModalProvider>
-          </QueryClientProvider>
-        </GestureHandlerRootView>
+        <ActionSheetProvider>
+          <GestureHandlerRootView style={styles.flex}>
+            <QueryClientProvider client={queryClient}>
+              <ModalProvider stack={modalStack}>
+                <BottomSheetModalProvider>
+                  <SafeAreaProvider>
+                    <Navigation />
+                    <StatusBar />
+                  </SafeAreaProvider>
+                </BottomSheetModalProvider>
+              </ModalProvider>
+            </QueryClientProvider>
+          </GestureHandlerRootView>
+        </ActionSheetProvider>
       </Provider>
     );
   }

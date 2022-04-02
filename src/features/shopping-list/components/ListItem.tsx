@@ -1,13 +1,23 @@
 import React from 'react';
-import { View, Text, Image } from 'react-native';
+import { View, Text, Image, TouchableOpacity } from 'react-native';
 import { DotsHorizontalIcon } from '../../../common/assets/icons';
 import { Space } from '../../../common/components';
 import Icon from '../../../common/components/Icon';
 import colors from '../../../constants/colors';
 
+import useActionSheet from '../../../hooks/useActionSheet';
+
 interface ListItemProps {}
 
 const ListItem: React.FunctionComponent<ListItemProps> = () => {
+  const openActionSheet = useActionSheet(
+    ['Obriši'],
+    (index) => {
+      console.log('index', index);
+    },
+    { destructiveButtonIndex: 1 },
+  );
+
   return (
     <View
       style={{
@@ -27,9 +37,9 @@ const ListItem: React.FunctionComponent<ListItemProps> = () => {
           <Text style={{ color: colors.gray }}>Dodano 2.4.</Text>
         </View>
       </View>
-      <View style={{ backgroundColor: colors.textField, borderRadius: 8, padding: 9 }}>
+      <TouchableOpacity style={{ backgroundColor: colors.textField, borderRadius: 8, padding: 9 }} onPress={openActionSheet}>
         <Icon icon={DotsHorizontalIcon} width={20} height={20} stroke={colors.darkSouls} />
-      </View>
+      </TouchableOpacity>
     </View>
   );
 };
