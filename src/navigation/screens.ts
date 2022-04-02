@@ -11,6 +11,11 @@ enum screen {
   MENU = 'Menu',
   CHAT = 'Chat',
   TAB_NAVIGATOR = 'TabNavigator',
+  GROUPS = 'Groups',
+  NEW_GROUP_SHEET_NEW_GROUP = 'NewGroupSheetNewGroup',
+  NEW_GROUP_SHEET_SELECT_CONTACT = 'NewGroupSheetSelectContact',
+  GROUP_DETAILS_SHEET_GROUP_DETAILS = 'GroupDetailsSheetGroupDetails',
+  GROUP_DETAILS_SHEET_SELECT_CONTACT = 'GroupDetailsSheetSelectContact',
 }
 
 export default screen;

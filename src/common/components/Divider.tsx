@@ -1,12 +1,16 @@
 import React from 'react';
-import { View } from 'react-native';
+import { View, ViewStyle } from 'react-native';
 
 import colors from '../../constants/colors';
 
-interface DividerProps {}
+export interface DividerProps {
+  style?: ViewStyle;
+  color?: string;
+  width?: number;
+}
 
-const Divider: React.FunctionComponent<DividerProps> = () => {
-  return <View style={{ height: 1, backgroundColor: colors.tabBarBackground, marginVertical: 16 }} />;
+const Divider: React.FunctionComponent<DividerProps> = ({ style, color = colors.tabBarBackground, width = 1 }) => {
+  return <View style={[{ borderColor: color, borderBottomWidth: width, marginVertical: 16 }, style]} />;
 };
 
 export default Divider;

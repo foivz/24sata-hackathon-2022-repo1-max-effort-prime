@@ -2,8 +2,8 @@ import React from 'react';
 import { StyleSheet, View, Text, Image, ScrollView } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
 
-import { ActionButton, Space } from '../../common/components';
-import { Card, Progress } from './components';
+import { ActionButton, Progress, Space } from '../../common/components';
+import { Card } from './components';
 
 import colors from '../../constants/colors';
 import { fontSize } from '../../constants/typography';

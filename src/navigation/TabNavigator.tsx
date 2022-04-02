@@ -5,6 +5,7 @@ import ShoppingListScreen from '../features/shopping-list/ShoppingListScreen';
 import ExpensesStack from '../features/expenses/navigation/ExpensesStack';
 import TabBarIcon from '../common/components/TabBarIcon';
 import DashboardScreen from '../features/dashboard/DashboardScreen';
+import GroupsScreen from '../features/groups/GroupsScreen';
 
 import colors from '../constants/colors';
 import { BarsSolidIcon, DollarSignSolidIcon, HouseSolidIcon, ListCheckSolidIcon, UsersSolidIcon } from '../common/assets/icons/navigation';
@@ -47,7 +48,7 @@ const BottomTabNavigator = () => {
       />
       <BottomTab.Screen
         name="TabFour"
-        component={ShoppingListScreen}
+        component={GroupsScreen}
         options={{
           tabBarIcon: ({ color, size, focused }) => {
             return <TabBarIcon icon={UsersSolidIcon} color={color} size={size} focused={focused} />;

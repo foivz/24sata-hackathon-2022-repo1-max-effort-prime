@@ -6,11 +6,12 @@ import { fontSize } from '../../constants/typography';
 import { getInitials } from '../../utils/getInitials';
 
 interface AvatarProps {
+  name: string;
   size?: number;
   style?: ViewStyle;
 }
 
-const Avatar: React.FunctionComponent<AvatarProps> = ({ size = 44, style }) => {
+const Avatar: React.FunctionComponent<AvatarProps> = ({ size = 44, style, name }) => {
   return (
     <View
       style={[
@@ -25,7 +26,7 @@ const Avatar: React.FunctionComponent<AvatarProps> = ({ size = 44, style }) => {
         },
         style,
       ]}>
-      <Text style={{ color: colors.black, fontSize: fontSize.normal }}>{getInitials('Emrah Rizvić')}</Text>
+      <Text style={{ color: colors.black, fontSize: fontSize.normal }}>{getInitials(name)}</Text>
     </View>
   );
 };
