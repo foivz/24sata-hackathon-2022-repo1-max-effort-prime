@@ -13,13 +13,15 @@ import { ChevronRightIcon, PlusIcon } from '../../common/assets/icons';
 import { VictoryAxis, VictoryChart, VictoryLine, VictoryTheme } from 'victory-native';
 import Icon from '../../common/components/Icon';
 import { ListItem } from '../shopping-list/components';
+import useUser from '../../common/hooks/useUser';
 
 const DashboardScreen = () => {
   const { openModal } = useModal();
+  const user = useUser();
 
   return (
     <View style={styles.container}>
-      <Text style={styles.title}>Bok, Filip!</Text>
+      <Text style={styles.title}>Bok, {user?.firstName}!</Text>
       <ScrollView contentContainerStyle={{ paddingHorizontal: 28 }}>
         <Card>
           <View style={{ flexDirection: 'row', justifyContent: 'space-between', alignItems: 'center' }}>
