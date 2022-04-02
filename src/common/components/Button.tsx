@@ -32,7 +32,7 @@ const Button: React.FunctionComponent<ButtonProps> = ({ title, variant, containe
       ) : (
         <>
           {icon && <Icon icon={icon} style={styles.icon} />}
-          <Text style={[{ color: textColor, fontSize: fontSize.normal }, textStyle]}>{title}</Text>
+          <Text style={[{ color: textColor, fontSize: fontSize.smallToNormal }, textStyle]}>{title}</Text>
         </>
       )}
     </TouchableOpacity>

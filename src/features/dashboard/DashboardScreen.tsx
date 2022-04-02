@@ -3,7 +3,7 @@ import { StyleSheet, View, Text } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
 
 import { ActionButton, Space } from '../../common/components';
-import { Progress } from './components';
+import { Card, Progress } from './components';
 
 import colors from '../../constants/colors';
 import { fontSize } from '../../constants/typography';
@@ -17,15 +17,15 @@ const DashboardScreen = () => {
   return (
     <SafeAreaView style={styles.container}>
       <Text style={styles.title}>Bok, Filip!</Text>
-      <View style={styles.card}>
+      <Card>
         <View style={{ flexDirection: 'row', justifyContent: 'space-between', alignItems: 'center' }}>
           <Text style={{ fontWeight: '500', fontSize: fontSize.mediumLarge }}>104 HRK</Text>
           <ActionButton icon={PlusIcon} iconSize={28} />
         </View>
         <Text style={{ color: colors.gray }}>Potrošnja ovaj mjesec</Text>
-      </View>
+      </Card>
 
-      <View style={styles.card}>
+      <Card>
         <View style={{ flexDirection: 'row', justifyContent: 'space-between', alignItems: 'center' }}>
           <Text style={{ fontWeight: '500', fontSize: fontSize.mediumLarge }}>76 HRK</Text>
           <ActionButton icon={PencilIcon} onPress={() => openModal('ChangeBudgetModal')} />
@@ -34,7 +34,7 @@ const DashboardScreen = () => {
         <Space height={10} />
 
         <Progress />
-      </View>
+      </Card>
     </SafeAreaView>
   );
 };
@@ -42,12 +42,12 @@ const DashboardScreen = () => {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    paddingHorizontal: 20,
+    paddingHorizontal: 28,
   },
   title: {
     fontSize: fontSize.extraLarge,
     fontWeight: 'bold',
-    marginBottom: 20,
+    marginBottom: 32,
   },
   separator: {
     marginVertical: 30,
