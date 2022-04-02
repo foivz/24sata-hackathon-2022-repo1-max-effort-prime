@@ -1,6 +1,6 @@
 import { BottomSheetModal } from '@gorhom/bottom-sheet';
 import React, { useRef, useState } from 'react';
-import { ScrollView, StyleSheet, Text, View } from 'react-native';
+import { FlatList, ScrollView, StyleSheet, Text, View } from 'react-native';
 
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { PlusIcon } from '../../common/assets/icons';
@@ -12,11 +12,24 @@ import { signOut } from '../login/store/user';
 import { ListItem } from './components';
 import AddProductSheet from '../../common/sheets/AddProductSheet/AddProductSheet';
 import ToggleButton from './components/ToggleButton';
+import { fetchShoppingList } from './api/shopping-list';
+import { useQuery } from 'react-query';
+import useUser from '../../common/hooks/useUser';
+import { Space } from '../../common/components';
 
 const ShoppingListScreen = () => {
   const [active, setActive] = useState<'redovna' | 'tjedna'>('redovna');
-  const dispatch = useAppDispatch();
   const addProductSheetRef = useRef<BottomSheetModal>(null);
+  const user = useUser();
+  const { data } = useQuery(['shoppingList', 'regular'], () => fetchShoppingList(user?._id), { enabled: !!user });
+
+  if (!data) return null;
+
+  const added = data.items;
+  const bought = data.items.filter((item: any) => item.buyedQuantity > 0);
+
+  console.log('added', added);
+  console.log('bought', bought);
 
   return (
     <SafeAreaView edges={['top', 'right', 'left']} style={styles.container}>
@@ -32,12 +45,23 @@ const ShoppingListScreen = () => {
           <ToggleButton text="Redovna" onPress={() => setActive('redovna')} active={active === 'redovna'} />
           <ToggleButton text="Tjedna" onPress={() => setActive('tjedna')} active={active === 'tjedna'} />
         </View>
-        <ListItem />
-        <ListItem />
-        <ListItem />
-        <Text style={{ fontSize: fontSize.large, fontWeight: 'bold', marginVertical: 20 }}>Kupljeno</Text>
-        <ListItem bought />
-        <ListItem bought />
+
+        <FlatList
+          data={added}
+          keyExtractor={(added) => added._id}
+          renderItem={({ item }) => <ListItem item={item} />}
+          ListHeaderComponent={() => <Text>Bez stavki</Text>}
+        />
+
+        <Space height={10} />
+        {bought.length > 0 && (
+          <FlatList
+            data={bought}
+            ListHeaderComponent={() => <Text style={{ fontSize: fontSize.large, fontWeight: 'bold', marginBottom: 20 }}>Kupljeno</Text>}
+            keyExtractor={(bought) => bought._id}
+            renderItem={({ item }) => <ListItem item={item} bought />}
+          />
+        )}
       </ScrollView>
       <AddProductSheet sheetRef={addProductSheetRef} />
     </SafeAreaView>

@@ -78,14 +78,14 @@ const DashboardScreen = () => {
             </Text>
             <Icon icon={ChevronRightIcon} width={25} height={25} stroke={colors.green} />
           </View>
-          <ListItem containerStyle={{ paddingHorizontal: 0, marginBottom: 0 }} hideActions />
+          <ListItem containerStyle={{ paddingHorizontal: 0, marginBottom: 0 }} hideActions item={{ name: 'Mlijeko' }} />
         </Card>
         <Card>
           <View style={{ flexDirection: 'row' }}>
             <Text style={{ flex: 1, fontSize: fontSize.small, marginBottom: 12 }}>Postoje proizvodi na tvojoj listi za kupnju</Text>
             <Icon icon={ChevronRightIcon} width={25} height={25} stroke={colors.green} />
           </View>
-          <ListItem containerStyle={{ paddingHorizontal: 0, marginBottom: 0 }} hideActions />
+          <ListItem containerStyle={{ paddingHorizontal: 0, marginBottom: 0 }} hideActions item={{ name: 'Banana' }} />
         </Card>
       </ScrollView>
     </View>

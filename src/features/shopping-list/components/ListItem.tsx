@@ -10,12 +10,15 @@ import useActionSheet from '../../../hooks/useActionSheet';
 import { CheckIcon } from '../assets';
 
 interface ListItemProps {
+  item: any;
   bought?: boolean;
   containerStyle?: ViewStyle;
   hideActions?: boolean;
 }
 
-const ListItem: React.FunctionComponent<ListItemProps> = ({ bought, containerStyle, hideActions }) => {
+const ListItem: React.FunctionComponent<ListItemProps> = ({ bought, containerStyle, hideActions, item }) => {
+  console.log('item', item);
+
   const openActionSheet = useActionSheet(
     ['Obriši'],
     (index) => {
@@ -47,7 +50,7 @@ const ListItem: React.FunctionComponent<ListItemProps> = ({ bought, containerSty
               fontSize: fontSize.smallToNormal,
               marginBottom: 2,
             }}>
-            Dukat Trajno mlijeko
+            {item.name}
           </Text>
           <Space height={3} />
           {bought ? (
