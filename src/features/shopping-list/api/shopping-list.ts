@@ -1,7 +1,14 @@
 import api from '../../../api/api';
 
 export const fetchShoppingList = async (userId: string) => {
-  console.log('WAT', `/users/${userId}/shopping-list/regular`);
   const response = await api.get(`/users/${userId}/shopping-list/regular`);
+  return response.data.data;
+};
+
+export const updateShoppingList = async ({ data }) => {
+  const response = await api.post(`/users/${data.userId}/shopping-list/regular`, {
+    items: data.items,
+    user: data.userId,
+  });
   return response.data.data;
 };

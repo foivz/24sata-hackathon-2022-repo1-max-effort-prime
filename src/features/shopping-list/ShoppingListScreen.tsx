@@ -5,10 +5,8 @@ import { FlatList, ScrollView, StyleSheet, Text, View } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { PlusIcon } from '../../common/assets/icons';
 import ActionButton from '../../common/components/ActionButton';
-import { useAppDispatch } from '../../common/store';
 import colors from '../../constants/colors';
 import { fontSize } from '../../constants/typography';
-import { signOut } from '../login/store/user';
 import { ListItem } from './components';
 import AddProductSheet from '../../common/sheets/AddProductSheet/AddProductSheet';
 import ToggleButton from './components/ToggleButton';
@@ -27,9 +25,6 @@ const ShoppingListScreen = () => {
 
   const added = data.items;
   const bought = data.items.filter((item: any) => item.buyedQuantity > 0);
-
-  console.log('added', added);
-  console.log('bought', bought);
 
   return (
     <SafeAreaView edges={['top', 'right', 'left']} style={styles.container}>
@@ -50,7 +45,7 @@ const ShoppingListScreen = () => {
           data={added}
           keyExtractor={(added) => added._id}
           renderItem={({ item }) => <ListItem item={item} />}
-          ListHeaderComponent={() => <Text>Bez stavki</Text>}
+          ListEmptyComponent={() => <Text>Bez stavki</Text>}
         />
 
         <Space height={10} />

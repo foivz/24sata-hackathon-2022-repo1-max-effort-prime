@@ -56,10 +56,10 @@ const ListItem: React.FunctionComponent<ListItemProps> = ({ bought, containerSty
           {bought ? (
             <View style={{ flexDirection: 'row' }}>
               <Icon icon={CheckIcon} width={16} height={16} style={{ marginRight: 6 }} color={colors.green} />
-              <Text style={{ color: colors.green, fontSize: fontSize.extraSmall }}>3 komada (kupljeno)</Text>
+              <Text style={{ color: colors.green, fontSize: fontSize.extraSmall }}>{item.buyedQuantity} komada (kupljeno)</Text>
             </View>
           ) : (
-            <Text style={{ color: colors.gray, fontSize: fontSize.extraSmall }}>3 komada</Text>
+            <Text style={{ color: colors.gray, fontSize: fontSize.extraSmall }}>{item.addedQuantity} komada</Text>
           )}
         </View>
       </View>

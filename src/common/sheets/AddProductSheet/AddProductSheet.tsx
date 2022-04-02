@@ -17,7 +17,7 @@ const AddProductSheet: React.FunctionComponent<AddProductSheetProps> = ({ sheetR
       enablePanDownToClose
       handleComponent={() => null}
       backdropComponent={(props) => <BottomSheetBackdrop disappearsOnIndex={-1} appearsOnIndex={0} {...props} />}>
-      <SheetContent />
+      <SheetContent sheetRef={sheetRef} />
     </BottomSheetModal>
   );
 };

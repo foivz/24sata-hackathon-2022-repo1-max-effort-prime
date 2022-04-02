@@ -7,10 +7,13 @@ import colors from '../../../constants/colors';
 import useModal from '../../../hooks/useModal';
 import { fontSize } from '../../../constants/typography';
 import useSearchProduct from '../../hooks/useSearchProduct';
+import { BottomSheetModal } from '@gorhom/bottom-sheet';
 
-interface SheetContentProps {}
+interface SheetContentProps {
+  sheetRef: React.MutableRefObject<BottomSheetModal | null>;
+}
 
-const SheetContent: React.FunctionComponent<SheetContentProps> = () => {
+const SheetContent: React.FunctionComponent<SheetContentProps> = ({ sheetRef }) => {
   const { openModal } = useModal();
   const [query, setQuery] = useState<string | null>(null);
 
@@ -28,7 +31,7 @@ const SheetContent: React.FunctionComponent<SheetContentProps> = () => {
           <View>
             {query ? (
               <>
-                <View style={{ flexDirection: 'row', alignItems: 'center' }}>
+                <TouchableOpacity style={{ flexDirection: 'row', alignItems: 'center' }}>
                   <ActionButton
                     icon={PlusIcon}
                     color={colors.green}
@@ -36,14 +39,16 @@ const SheetContent: React.FunctionComponent<SheetContentProps> = () => {
                     style={{ borderRadius: 30, marginRight: 20, width: 48, height: 48 }}
                   />
                   <Text style={{ color: colors.gray, fontSize: fontSize.smallToNormal }}>Kreiraj proizvod "{query}"</Text>
-                </View>
+                </TouchableOpacity>
                 <Divider />
               </>
             ) : null}
           </View>
         )}
         renderItem={({ item }) => (
-          <TouchableOpacity style={{ flexDirection: 'row', alignItems: 'center' }} onPress={() => openModal('ChangeQuantityModal')}>
+          <TouchableOpacity
+            style={{ flexDirection: 'row', alignItems: 'center' }}
+            onPress={() => openModal('ChangeQuantityModal', { sheetRef })}>
             <Image source={{ uri: item.imageUrl }} style={{ width: 50, height: 50, marginRight: 18 }} />
             <Text style={{ fontSize: fontSize.smallToNormal }}>{item.name}</Text>
           </TouchableOpacity>
