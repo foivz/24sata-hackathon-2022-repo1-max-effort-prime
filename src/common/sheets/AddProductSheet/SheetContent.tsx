@@ -1,8 +1,8 @@
 import React from 'react';
 import { View, Text, Image, TouchableOpacity } from 'react-native';
-import { PlusIcon, SearchIcon } from '../../../common/assets/icons';
+import { PlusIcon, SearchIcon } from '../../assets/icons';
 
-import { ActionButton, TextField } from '../../../common/components';
+import { ActionButton, TextField } from '../../components';
 import colors from '../../../constants/colors';
 import useModal from '../../../hooks/useModal';
 
@@ -19,7 +19,7 @@ const SheetContent: React.FunctionComponent<SheetContentProps> = () => {
         <Text style={{ color: colors.gray }}>Kreiraj proizvod "Mlijeko"</Text>
       </View>
       <TouchableOpacity style={{ flexDirection: 'row', alignItems: 'center' }} onPress={() => openModal('ChangeQuantityModal')}>
-        <Image source={require('../assets/mleko.png')} style={{ width: 50, height: 50, marginRight: 18 }} />
+        <Image source={require('../../../features/shopping-list/assets/mleko.png')} style={{ width: 50, height: 50, marginRight: 18 }} />
         <Text>Dukat Trajno mlijeko</Text>
       </TouchableOpacity>
     </View>

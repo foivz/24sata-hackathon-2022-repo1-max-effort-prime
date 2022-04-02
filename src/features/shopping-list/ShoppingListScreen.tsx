@@ -10,10 +10,10 @@ import colors from '../../constants/colors';
 import { fontSize } from '../../constants/typography';
 import { signOut } from '../login/store/user';
 import { ListItem } from './components';
-import AddProductSheet from './components/AddProductSheet';
+import AddProductSheet from '../../common/sheets/AddProductSheet/AddProductSheet';
 import ToggleButton from './components/ToggleButton';
 
-const TabTwoScreen = () => {
+const ShoppingListScreen = () => {
   const [active, setActive] = useState<'redovna' | 'tjedna'>('redovna');
   const dispatch = useAppDispatch();
   const addProductSheetRef = useRef<BottomSheetModal>(null);
@@ -51,4 +51,4 @@ const styles = StyleSheet.create({
   },
 });
 
-export default TabTwoScreen;
+export default ShoppingListScreen;

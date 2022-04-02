@@ -1,5 +1,4 @@
 import React, { useMemo } from 'react';
-import { View, Text } from 'react-native';
 import { BottomSheetBackdrop, BottomSheetModal } from '@gorhom/bottom-sheet';
 import SheetContent from './SheetContent';
 

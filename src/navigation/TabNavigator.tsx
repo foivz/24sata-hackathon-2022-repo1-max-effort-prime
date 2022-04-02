@@ -1,7 +1,5 @@
 import * as React from 'react';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
-import { NavigationContainer } from '@react-navigation/native';
-import { createNativeStackNavigator } from '@react-navigation/native-stack';
 
 import TabOneScreen from '../../screens/TabOneScreen';
 import ShoppingListScreen from '../features/shopping-list/ShoppingListScreen';
@@ -9,9 +7,8 @@ import { BarsSolidIcon, DollarSignSolidIcon, HouseSolidIcon, ListCheckSolidIcon,
 
 import colors from '../constants/colors';
 import TabBarIcon from '../common/components/TabBarIcon';
-import { RootStackParamList, RootTabParamList } from '../../types';
-import ExpensesScreen from '../features/expenses/ExpensesScreen';
-import GuestStack from './GuestNavigator';
+import { RootTabParamList } from '../../types';
+import ExpensesStack from '../features/expenses/navigation/ExpensesStack';
 
 const BottomTab = createBottomTabNavigator<RootTabParamList>();
 
@@ -41,7 +38,7 @@ const BottomTabNavigator = () => {
       />
       <BottomTab.Screen
         name="TabThree"
-        component={ExpensesScreen}
+        component={ExpensesStack}
         options={{
           tabBarIcon: ({ color, size, focused }) => {
             return <TabBarIcon icon={DollarSignSolidIcon} color={color} size={size} focused={focused} />;

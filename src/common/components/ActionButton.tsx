@@ -11,7 +11,7 @@ interface ActionButtonProps extends TouchableOpacityProps {
   style?: ViewStyle;
 }
 
-const ActionButton: React.FunctionComponent<ActionButtonProps> = ({ icon, iconSize = 20, color = colors.green, style, ...props }) => {
+const ActionButton: React.FunctionComponent<ActionButtonProps> = ({ icon, iconSize = 23, color = colors.green, style, ...props }) => {
   return (
     <TouchableOpacity style={[styles.container, style]} {...props}>
       <Icon icon={icon} width={iconSize} height={iconSize} stroke={color} />

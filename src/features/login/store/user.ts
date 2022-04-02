@@ -30,10 +30,8 @@ export const signIn = createAsyncThunk<LoginResponse, LoginBody, { state: RootSt
 });
 
 export const restoreAuth = createAsyncThunk('user/restoreAuth', async (_, { rejectWithValue }) => {
-  console.log('restoram');
   // Get tokens from the storage storage
   const auth = await AsyncStorage.getItem('auth');
-  console.log('restoram', auth);
   if (!auth) return rejectWithValue('No token!');
 
   const userData = JSON.parse(auth);
