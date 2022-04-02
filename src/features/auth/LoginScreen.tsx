@@ -8,6 +8,7 @@ import LoginIllustration from './assets/login.svg';
 import { ChevronRightIcon } from '../../common/assets/icons';
 import Icon from '../../common/components/Icon';
 import colors from '../../constants/colors';
+import { fontSize } from '../../constants/typography';
 
 interface LoginScreenProps {}
 
@@ -25,7 +26,7 @@ const LoginScreen: React.FunctionComponent<LoginScreenProps> = () => {
           paddingBottom: insets.bottom + 20,
         }}>
         <View style={{ alignSelf: 'center', alignItems: 'center' }}>
-          <Text>Naziv Aplikacije</Text>
+          <Text style={{ fontWeight: 'bold', fontSize: fontSize.extraLarge }}>Naziv Aplikacije</Text>
           <View style={{ alignSelf: 'center' }}>
             <Icon icon={LoginIllustration} width={300} height={300} />
           </View>
