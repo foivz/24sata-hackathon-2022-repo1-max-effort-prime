@@ -1,5 +1,6 @@
 import React from 'react';
 import { View, Text, StyleSheet } from 'react-native';
+import { useNavigation } from '@react-navigation/native';
 
 import { ActionButton, Avatar, Progress, Space } from '../../common/components';
 import ExpenseEntry from './components/ExpenseEntry';
@@ -9,27 +10,24 @@ import colors from '../../constants/colors';
 import { fontSize } from '../../constants/typography';
 import { PencilIcon } from '../dashboard/assets';
 import useModal from '../../hooks/useModal';
+import screen from '../../navigation/screens';
+import { GroupMember } from './components';
 
 interface GroupDetailsScreenProps {}
 
 const GroupDetailsScreen: React.FC<GroupDetailsScreenProps> = () => {
   const { openModal } = useModal();
+  const navigation = useNavigation();
 
   return (
     <View>
       <View style={styles.flexRow}>
         <Text style={{ fontWeight: 'bold', fontSize: fontSize.large }}>Obitelj</Text>
-        <ActionButton icon={PlusIcon} />
+        <ActionButton icon={PlusIcon} onPress={() => navigation.navigate(screen.GROUP_DETAILS_SHEET_SELECT_CONTACT)} />
       </View>
       <Space height={30} />
 
-      <View style={styles.flexRow}>
-        <View style={{ flexDirection: 'row', alignItems: 'center' }}>
-          <Avatar style={{ marginRight: 20 }} />
-          <Text style={styles.title}>Filip Bel</Text>
-        </View>
-        <ActionButton icon={TrashIcon} color={colors.paradisePink} backgroundColor={colors.sentimentalPink} />
-      </View>
+      <GroupMember name="Filip Bel" />
 
       <Space height={50} />
 

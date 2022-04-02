@@ -1,16 +1,20 @@
 import React from 'react';
 import { View, Text, StyleSheet, TextInput } from 'react-native';
+import { useNavigation } from '@react-navigation/native';
 
-import { ActionButton, Avatar, Button, Progress, Space, TextField } from '../../common/components';
+import { ActionButton, Avatar, Button, Space, TextField } from '../../common/components';
 
 import { PlusIcon, TrashIcon } from '../../common/assets/icons';
 import colors from '../../constants/colors';
 import { fontSize } from '../../constants/typography';
-import { PencilIcon } from '../dashboard/assets';
+import screen from '../../navigation/screens';
+import { GroupMember } from './components';
 
-interface GroupDetailsScreenProps {}
+interface NewGroupScreenProps {}
 
-const GroupDetailsScreen: React.FC<GroupDetailsScreenProps> = () => {
+const NewGroupScreen: React.FC<NewGroupScreenProps> = () => {
+  const navigation = useNavigation();
+
   return (
     <View>
       <Text style={{ fontWeight: 'bold', fontSize: fontSize.large, marginBottom: 20 }}>Nova grupa</Text>
@@ -18,19 +22,7 @@ const GroupDetailsScreen: React.FC<GroupDetailsScreenProps> = () => {
       <TextField placeholder="Naziv grupe" />
       <Space height={30} />
 
-      <View style={styles.flexRow}>
-        <Text style={{ fontWeight: 'bold', fontSize: fontSize.medium }}>👪 Članovi</Text>
-        <ActionButton icon={PlusIcon} />
-      </View>
-      <Space height={20} />
-
-      <View style={styles.flexRow}>
-        <View style={{ flexDirection: 'row', alignItems: 'center' }}>
-          <Avatar style={{ marginRight: 20 }} />
-          <Text style={styles.title}>Filip Bel</Text>
-        </View>
-        <ActionButton icon={TrashIcon} color={colors.paradisePink} backgroundColor={colors.sentimentalPink} />
-      </View>
+      <GroupMember name="Filip Bel" />
 
       <Space height={40} />
 
@@ -80,4 +72,4 @@ const styles = StyleSheet.create({
   },
 });
 
-export default GroupDetailsScreen;
+export default NewGroupScreen;

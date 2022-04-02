@@ -1,11 +1,12 @@
 import React, { useEffect, useState } from 'react';
 import { View, Text, StyleSheet, FlatList } from 'react-native';
 import * as Contacts from 'expo-contacts';
+import { useNavigation } from '@react-navigation/native';
 
-import { Divider, Space, TextField } from '../../common/components';
+import { ActionButton, Divider, Space, TextField } from '../../common/components';
 import { Contact } from './components';
 
-import { SearchIcon } from '../../common/assets/icons';
+import { ArrowLeftIcon, SearchIcon } from '../../common/assets/icons';
 import { fontSize } from '../../constants/typography';
 import { Contact as ContactType } from './types';
 import colors from '../../constants/colors';
@@ -14,6 +15,7 @@ interface SelectContactScreenProps {}
 
 const SelectContactScreen: React.FC<SelectContactScreenProps> = () => {
   const [contacts, setContacts] = useState<ContactType[]>([]);
+  const navigation = useNavigation();
   const [searchQuery, setSearchQuery] = useState<string>('');
 
   useEffect(() => {
@@ -47,6 +49,8 @@ const SelectContactScreen: React.FC<SelectContactScreenProps> = () => {
 
   return (
     <View>
+      <ActionButton icon={ArrowLeftIcon} backgroundColor={colors.whiteSmoke} color={colors.darkSouls} onPress={() => navigation.goBack()} />
+      <Space height={20} />
       <Text style={{ fontWeight: 'bold', fontSize: fontSize.large }}>Dodaj člana</Text>
 
       <Space height={20} />

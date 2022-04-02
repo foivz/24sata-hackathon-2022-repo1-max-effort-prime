@@ -1,15 +1,13 @@
 import React, { useMemo } from 'react';
 import { BottomSheetBackdrop, BottomSheetModal } from '@gorhom/bottom-sheet';
 
-import NewGroupScreen from '../NewGroupScreen';
-import GroupDetailsScreen from '../GroupDetailsScreen';
-import SelectContactScreen from '../SelectContactScreen';
+import SheetContent from './SheetContent';
 
-interface GroupSheetProps {
+interface GroupDetailsSheetProps {
   sheetRef: React.MutableRefObject<BottomSheetModal | null>;
 }
 
-const GroupSheet: React.FunctionComponent<GroupSheetProps> = ({ sheetRef }) => {
+const GroupDetailsSheet: React.FunctionComponent<GroupDetailsSheetProps> = ({ sheetRef }) => {
   const snapPoints = useMemo(() => ['83%'], []);
 
   return (
@@ -21,9 +19,9 @@ const GroupSheet: React.FunctionComponent<GroupSheetProps> = ({ sheetRef }) => {
       handleComponent={() => null}
       backdropComponent={(props) => <BottomSheetBackdrop disappearsOnIndex={-1} appearsOnIndex={0} {...props} />}
       style={{ paddingHorizontal: 20, paddingTop: 30 }}>
-      <SelectContactScreen />
+      <SheetContent />
     </BottomSheetModal>
   );
 };
 
-export default GroupSheet;
+export default GroupDetailsSheet;
