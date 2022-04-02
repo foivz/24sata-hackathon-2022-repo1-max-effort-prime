@@ -7,11 +7,11 @@ import Icon from './Icon';
 interface ActionButtonProps extends TouchableOpacityProps {
   icon: React.FunctionComponent;
   iconSize?: number;
-  color: string;
+  color?: string;
   style?: ViewStyle;
 }
 
-const ActionButton: React.FunctionComponent<ActionButtonProps> = ({ icon, iconSize = 20, color, style, ...props }) => {
+const ActionButton: React.FunctionComponent<ActionButtonProps> = ({ icon, iconSize = 20, color = colors.green, style, ...props }) => {
   return (
     <TouchableOpacity style={[styles.container, style]} {...props}>
       <Icon icon={icon} width={iconSize} height={iconSize} stroke={color} />
