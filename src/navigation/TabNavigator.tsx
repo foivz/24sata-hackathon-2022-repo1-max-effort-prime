@@ -9,6 +9,7 @@ import DashboardScreen from '../features/dashboard/DashboardScreen';
 import colors from '../constants/colors';
 import { BarsSolidIcon, DollarSignSolidIcon, HouseSolidIcon, ListCheckSolidIcon, UsersSolidIcon } from '../common/assets/icons/navigation';
 import { RootTabParamList } from '../../types';
+import MenuStack from '../features/menu/navigation/MenuStack';
 
 const BottomTab = createBottomTabNavigator<RootTabParamList>();
 
@@ -56,7 +57,7 @@ const BottomTabNavigator = () => {
       />
       <BottomTab.Screen
         name="TabFive"
-        component={ShoppingListScreen}
+        component={MenuStack}
         options={{
           tabBarIcon: ({ color, size, focused }) => {
             return <TabBarIcon icon={BarsSolidIcon} color={color} size={size} focused={focused} />;
