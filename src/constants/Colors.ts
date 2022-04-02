@@ -8,4 +8,6 @@ export default {
   whiteSmoke: '#F5F5F5',
   darkSouls: '#A3A3A3',
   lynxWhite: '#F7F7F7',
+  paradisePink: '#E54360',
+  sentimentalPink: '#F8ECF5',
 };

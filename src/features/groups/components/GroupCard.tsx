@@ -1,16 +1,16 @@
 import React from 'react';
-import { View, Text } from 'react-native';
+import { View, Text, TouchableOpacityProps, TouchableOpacity } from 'react-native';
 
 import { Avatar, Space } from '../../../common/components';
 
 import colors from '../../../constants/colors';
 import { fontSize } from '../../../constants/typography';
 
-interface GroupCardProps {}
+interface GroupCardProps extends TouchableOpacityProps {}
 
-const GroupCard: React.FC<GroupCardProps> = () => {
+const GroupCard: React.FC<GroupCardProps> = ({ ...props }) => {
   return (
-    <View style={{ padding: 20, backgroundColor: colors.white, borderRadius: 20 }}>
+    <TouchableOpacity style={{ padding: 20, backgroundColor: colors.white, borderRadius: 20 }} {...props}>
       <Text style={{ fontWeight: 'bold', fontSize: fontSize.small }}>Obitelj</Text>
       <Space height={10} />
       <View style={{ flexDirection: 'row', alignItems: 'center' }}>
@@ -20,7 +20,7 @@ const GroupCard: React.FC<GroupCardProps> = () => {
         <Space width={10} />
         <Avatar />
       </View>
-    </View>
+    </TouchableOpacity>
   );
 };
 

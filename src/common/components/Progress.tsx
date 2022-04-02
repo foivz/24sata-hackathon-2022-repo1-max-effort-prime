@@ -1,9 +1,9 @@
 import React from 'react';
 import { View, Text, StyleSheet } from 'react-native';
 
-import { Space } from '../../../common/components';
+import Space from './Space';
 
-import colors from '../../../constants/colors';
+import colors from '../../constants/colors';
 
 interface ProgressProps {}
 
