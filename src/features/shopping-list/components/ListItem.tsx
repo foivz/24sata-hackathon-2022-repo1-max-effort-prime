@@ -47,7 +47,7 @@ const ListItem: React.FunctionComponent<ListItemProps> = ({ bought }) => {
           <Space height={3} />
           {bought ? (
             <View style={{ flexDirection: 'row' }}>
-              <Icon icon={CheckIcon} width={16} height={16} style={{ marginRight: 6 }} />
+              <Icon icon={CheckIcon} width={16} height={16} style={{ marginRight: 6 }} color={colors.green} />
               <Text style={{ color: colors.green, fontSize: fontSize.extraSmall }}>3 komada (kupljeno)</Text>
             </View>
           ) : (
