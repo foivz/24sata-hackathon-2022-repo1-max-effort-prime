@@ -1,5 +1,5 @@
 import React from 'react';
-import { View, Text, Image, TouchableOpacity } from 'react-native';
+import { View, Text, Image, TouchableOpacity, ViewStyle } from 'react-native';
 import { DotsHorizontalIcon, PlusIcon } from '../../../common/assets/icons';
 import { Space } from '../../../common/components';
 import Icon from '../../../common/components/Icon';
@@ -11,9 +11,11 @@ import { CheckIcon } from '../assets';
 
 interface ListItemProps {
   bought?: boolean;
+  containerStyle?: ViewStyle;
+  hideActions?: boolean;
 }
 
-const ListItem: React.FunctionComponent<ListItemProps> = ({ bought }) => {
+const ListItem: React.FunctionComponent<ListItemProps> = ({ bought, containerStyle, hideActions }) => {
   const openActionSheet = useActionSheet(
     ['Obriši'],
     (index) => {
@@ -24,16 +26,19 @@ const ListItem: React.FunctionComponent<ListItemProps> = ({ bought }) => {
 
   return (
     <View
-      style={{
-        flexDirection: 'row',
-        backgroundColor: colors.white,
-        borderRadius: 20,
-        paddingVertical: 15,
-        paddingHorizontal: 22,
-        alignItems: 'center',
-        justifyContent: 'space-between',
-        marginBottom: 14,
-      }}>
+      style={[
+        {
+          flexDirection: 'row',
+          backgroundColor: colors.white,
+          borderRadius: 20,
+          paddingVertical: 15,
+          paddingHorizontal: 22,
+          alignItems: 'center',
+          justifyContent: 'space-between',
+          marginBottom: 14,
+        },
+        containerStyle,
+      ]}>
       <View style={{ flexDirection: 'row', alignItems: 'center' }}>
         <Image source={require('../assets/mleko.png')} style={{ width: 50, height: 50, marginRight: 18 }} />
         <View>
@@ -55,9 +60,11 @@ const ListItem: React.FunctionComponent<ListItemProps> = ({ bought }) => {
           )}
         </View>
       </View>
-      <TouchableOpacity style={{ backgroundColor: colors.whiteSmoke, borderRadius: 8, padding: 9 }} onPress={openActionSheet}>
-        <Icon icon={DotsHorizontalIcon} width={20} height={20} stroke={colors.darkSouls} />
-      </TouchableOpacity>
+      {!hideActions && (
+        <TouchableOpacity style={{ backgroundColor: colors.whiteSmoke, borderRadius: 8, padding: 9 }} onPress={openActionSheet}>
+          <Icon icon={DotsHorizontalIcon} width={20} height={20} stroke={colors.darkSouls} />
+        </TouchableOpacity>
+      )}
     </View>
   );
 };
