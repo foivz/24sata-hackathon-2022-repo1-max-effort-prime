@@ -7,6 +7,9 @@ import { GestureHandlerRootView } from 'react-native-gesture-handler';
 import useCachedResources from './src/hooks/useCachedResources';
 import Navigation from './src/navigation/TabNavigator';
 import { BottomSheetModalProvider } from '@gorhom/bottom-sheet';
+import { QueryClientProvider, QueryClient } from 'react-query';
+
+const queryClient = new QueryClient();
 
 const App = () => {
   const isLoadingComplete = useCachedResources();
@@ -16,12 +19,14 @@ const App = () => {
   } else {
     return (
       <GestureHandlerRootView style={{ flex: 1 }}>
-        <BottomSheetModalProvider>
-          <SafeAreaProvider>
-            <Navigation />
-            <StatusBar />
-          </SafeAreaProvider>
-        </BottomSheetModalProvider>
+        <QueryClientProvider client={queryClient}>
+          <BottomSheetModalProvider>
+            <SafeAreaProvider>
+              <Navigation />
+              <StatusBar />
+            </SafeAreaProvider>
+          </BottomSheetModalProvider>
+        </QueryClientProvider>
       </GestureHandlerRootView>
     );
   }

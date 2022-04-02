@@ -2,8 +2,8 @@ import React from 'react';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 
 import screen from './screens';
-import LoginScreen from '../features/auth/LoginScreen';
-import RegisterScreen from '../features/auth/RegisterScreen';
+import LoginScreen from '../features/login/LoginScreen';
+import RegisterScreen from '../features/login/RegisterScreen';
 import colors from '../constants/colors';
 
 export type GuestNavigatorParamList = {

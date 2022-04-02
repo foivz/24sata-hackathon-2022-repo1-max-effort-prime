@@ -1,5 +1,5 @@
 import React from 'react';
-import { KeyboardAvoidingView, Text, View, ScrollView } from 'react-native';
+import { KeyboardAvoidingView, Text, View, ScrollView, StyleSheet } from 'react-native';
 import { Controller, useForm } from 'react-hook-form';
 import { SafeAreaView, useSafeAreaInsets } from 'react-native-safe-area-context';
 import { Button, Space, TextField } from '../../common/components';
@@ -9,14 +9,34 @@ import { ChevronRightIcon } from '../../common/assets/icons';
 import Icon from '../../common/components/Icon';
 import colors from '../../constants/colors';
 import { fontSize } from '../../constants/typography';
+import { useAppDispatch } from '../../common/store';
+import { LoginBody } from './api/user';
+import { signIn } from './store/user';
 
 interface LoginScreenProps {}
 
 const LoginScreen: React.FunctionComponent<LoginScreenProps> = () => {
   const insets = useSafeAreaInsets();
+  const dispatch = useAppDispatch();
+
+  const { control, handleSubmit } = useForm<LoginBody>({
+    defaultValues: {
+      phoneNumber: '',
+      password: '',
+    },
+  });
+
+  const onSubmit = async (data: LoginBody) => {
+    try {
+      await dispatch(signIn({ data, type: 'consultant' })).unwrap();
+    } catch (error: any) {
+      const err = error + '';
+      //    Toast.show({ type: 'error', text1: err });
+    }
+  };
 
   return (
-    <KeyboardAvoidingView style={{ flex: 1 }} behavior="padding">
+    <KeyboardAvoidingView style={styles.flex} behavior="padding">
       <ScrollView
         contentContainerStyle={{
           alignItems: 'center',
@@ -49,5 +69,11 @@ const LoginScreen: React.FunctionComponent<LoginScreenProps> = () => {
     </KeyboardAvoidingView>
   );
 };
+
+const styles = StyleSheet.create({
+  flex: {
+    flex: 1,
+  },
+});
 
 export default LoginScreen;
