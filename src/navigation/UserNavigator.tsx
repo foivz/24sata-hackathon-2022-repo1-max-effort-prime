@@ -16,7 +16,7 @@ const Stack = createNativeStackNavigator<UserNavigatorParamList>();
 
 const UserNavigator = () => {
   return (
-    <Stack.Navigator screenOptions={{ headerShown: false }}>
+    <Stack.Navigator screenOptions={{ headerShown: false, contentStyle: { paddingTop: 20, backgroundColor: '#F1F1F1' } }}>
       <Stack.Screen name={screen.TAB_NAVIGATOR} component={BottomTabNavigator} />
       <Stack.Screen name={screen.CHAT} component={ChatScreen} />
     </Stack.Navigator>

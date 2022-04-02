@@ -57,13 +57,13 @@ const LoginScreen: React.FunctionComponent<LoginScreenProps> = () => {
           paddingBottom: insets.bottom + 20,
         }}>
         <View style={{ alignSelf: 'center', alignItems: 'center' }}>
-          <Text style={{ fontWeight: 'bold', fontSize: fontSize.extraLarge, marginTop: 20 }}>Šparo</Text>
-          <View style={{ alignSelf: 'center' }}>
-            <Icon icon={LoginIllustration} width={300} height={300} />
-          </View>
+          <Text style={{ fontWeight: 'bold', fontSize: fontSize.extraLarge, marginTop: 60 }}>Šparo</Text>
         </View>
         <View style={{ width: '100%', paddingHorizontal: 23 }}>
           <View>
+            <View style={{ alignSelf: 'center', marginBottom: 30 }}>
+              <Icon icon={LoginIllustration} width={300} height={300} />
+            </View>
             <Controller
               name="phoneNumber"
               control={control}
@@ -84,7 +84,7 @@ const LoginScreen: React.FunctionComponent<LoginScreenProps> = () => {
             <Button variant="primary" title="Prijava" onPress={handleSubmit(onSubmit)} loading={isLoading} />
             <Space height={29} />
             <View style={{ flexDirection: 'row', alignItems: 'center', alignSelf: 'center' }}>
-              <Text style={{ color: colors.green }}>Kreiranje računa</Text>
+              <Text style={{ color: colors.green, fontSize: fontSize.normal }}>Kreiranje računa</Text>
               <Icon icon={ChevronRightIcon} width={18} height={18} stroke={colors.green} />
             </View>
           </View>

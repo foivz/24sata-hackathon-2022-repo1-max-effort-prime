@@ -2,6 +2,7 @@ import React from 'react';
 import { View, Text, ViewStyle } from 'react-native';
 
 import colors from '../../constants/colors';
+import { fontSize } from '../../constants/typography';
 import { getInitials } from '../../utils/getInitials';
 
 interface AvatarProps {
@@ -24,7 +25,7 @@ const Avatar: React.FunctionComponent<AvatarProps> = ({ size = 44, style }) => {
         },
         style,
       ]}>
-      <Text style={{ color: colors.black }}>{getInitials('Emrah Rizvić')}</Text>
+      <Text style={{ color: colors.black, fontSize: fontSize.normal }}>{getInitials('Emrah Rizvić')}</Text>
     </View>
   );
 };

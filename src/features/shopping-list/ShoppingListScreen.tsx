@@ -1,6 +1,6 @@
 import { BottomSheetModal } from '@gorhom/bottom-sheet';
 import React, { useRef, useState } from 'react';
-import { StyleSheet, Text, View } from 'react-native';
+import { ScrollView, StyleSheet, Text, View } from 'react-native';
 
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { PlusIcon } from '../../common/assets/icons';
@@ -20,16 +20,25 @@ const ShoppingListScreen = () => {
 
   return (
     <SafeAreaView edges={['top', 'right', 'left']} style={styles.container}>
-      <View style={{ flexDirection: 'row', alignItems: 'center', justifyContent: 'space-between' }}>
-        <Text style={{ fontSize: fontSize.large }}>🛒 </Text>
-        <ActionButton icon={PlusIcon} color={colors.green} onPress={() => addProductSheetRef.current?.present()} />
+      <View style={{ paddingHorizontal: 28 }}>
+        <View style={{ flexDirection: 'row', alignItems: 'center', justifyContent: 'space-between' }}>
+          <Text style={{ fontSize: fontSize.extraLarge }}>🛒 </Text>
+          <ActionButton icon={PlusIcon} color={colors.green} onPress={() => addProductSheetRef.current?.present()} />
+        </View>
+        <Text style={{ fontSize: fontSize.extraLarge, fontWeight: 'bold' }}>Lista za kupnju</Text>
       </View>
-      <Text style={{ fontSize: fontSize.extraLarge, fontWeight: 'bold' }}>Lista za kupnju</Text>
-      <View style={{ flexDirection: 'row', alignItems: 'center' }}>
-        <ToggleButton text="Redovna" onPress={() => setActive('redovna')} active={active === 'redovna'} />
-        <ToggleButton text="Tjedna" onPress={() => setActive('tjedna')} active={active === 'tjedna'} />
-      </View>
-      <ListItem />
+      <ScrollView contentContainerStyle={{ paddingHorizontal: 28 }}>
+        <View style={{ flexDirection: 'row', alignItems: 'center', marginVertical: 25 }}>
+          <ToggleButton text="Redovna" onPress={() => setActive('redovna')} active={active === 'redovna'} />
+          <ToggleButton text="Tjedna" onPress={() => setActive('tjedna')} active={active === 'tjedna'} />
+        </View>
+        <ListItem />
+        <ListItem />
+        <ListItem />
+        <Text style={{ fontSize: fontSize.large, fontWeight: 'bold', marginVertical: 20 }}>Kupljeno</Text>
+        <ListItem bought />
+        <ListItem bought />
+      </ScrollView>
       <AddProductSheet sheetRef={addProductSheetRef} />
     </SafeAreaView>
   );
@@ -38,7 +47,7 @@ const ShoppingListScreen = () => {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    paddingHorizontal: 28,
+    // paddingHorizontal: 28,
   },
   title: {
     fontSize: 20,

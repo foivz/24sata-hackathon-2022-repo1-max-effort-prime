@@ -2,10 +2,9 @@ import React from 'react';
 import { View, Text, Image, TouchableOpacity } from 'react-native';
 
 import { Space } from '../../../common/components';
-import Icon from '../../../common/components/Icon';
 
 import colors from '../../../constants/colors';
-import { DotsHorizontalIcon } from '../../../common/assets/icons';
+import { fontSize } from '../../../constants/typography';
 
 interface ListItemProps {}
 
@@ -20,13 +19,14 @@ const ListItem: React.FunctionComponent<ListItemProps> = () => {
         paddingHorizontal: 22,
         alignItems: 'center',
         justifyContent: 'space-between',
+        marginBottom: 12,
       }}>
       <View style={{ flexDirection: 'row', alignItems: 'center' }}>
         <Image source={require('../../shopping-list/assets/mleko.png')} style={{ width: 50, height: 50, marginRight: 18 }} />
         <View>
-          <Text>Dukat Trajno mlijeko</Text>
+          <Text style={{ fontSize: fontSize.small }}>Dukat Trajno mlijeko</Text>
           <Space height={3} />
-          <Text style={{ color: colors.gray }}>3 komada</Text>
+          <Text style={{ color: colors.gray, fontSize: fontSize.small }}>3 komada</Text>
         </View>
       </View>
       <View style={{ backgroundColor: colors.whiteSmoke, borderRadius: 8, padding: 9, alignSelf: 'flex-start' }}>

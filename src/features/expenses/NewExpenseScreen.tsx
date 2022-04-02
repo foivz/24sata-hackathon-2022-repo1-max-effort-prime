@@ -1,6 +1,6 @@
 import React, { useRef } from 'react';
 import { BottomSheetModal } from '@gorhom/bottom-sheet';
-import { View, Text, ScrollView } from 'react-native';
+import { View, Text, ScrollView, StyleSheet } from 'react-native';
 import { SafeAreaView, useSafeAreaInsets } from 'react-native-safe-area-context';
 
 import { ActionButton, Button, Space } from '../../common/components';
@@ -23,15 +23,14 @@ const NewExpenseScreen: React.FC<NewExpenseScreenProps> = () => {
 
   return (
     <SafeAreaView style={{ paddingHorizontal: 28 }} edges={['top', 'left', 'right']}>
+      <Text style={{ fontSize: fontSize.large, fontWeight: 'bold', marginBottom: 30 }}>💰 Novi trošak</Text>
       <ScrollView showsVerticalScrollIndicator={false} contentContainerStyle={{ paddingBottom: insets.bottom + 30 }}>
-        <Text style={{ fontSize: fontSize.large, fontWeight: 'bold', marginBottom: 30 }}>💰 Novi trošak</Text>
-
         {/* Total */}
 
-        <View style={{ backgroundColor: colors.white, paddingHorizontal: 20, paddingVertical: 28, borderRadius: 20 }}>
+        <View style={{ backgroundColor: colors.white, paddingHorizontal: 20, paddingVertical: 22, borderRadius: 20 }}>
           <View>
             <Text style={{ fontWeight: 'bold', fontSize: fontSize.large, marginBottom: 5 }}>180 HRK</Text>
-            <Text style={{ color: colors.gray }}>Ukupan iznos</Text>
+            <Text style={{ color: colors.gray, fontSize: fontSize.small }}>Ukupan iznos</Text>
           </View>
           <Space height={20} />
 
@@ -45,14 +44,15 @@ const NewExpenseScreen: React.FC<NewExpenseScreenProps> = () => {
           />
         </View>
         <Space height={20} />
-        <Text style={{ fontWeight: 'bold', fontSize: fontSize.small, marginBottom: 10 }}>Trošak dijele</Text>
+        <Text style={styles.subtitle}>Trošak dijele</Text>
+        <Space height={16} />
         <ExpenseParticipant />
         <ExpenseParticipant />
         <ExpenseParticipant />
         <Space height={20} />
 
         <View style={{ flexDirection: 'row', alignItems: 'center', justifyContent: 'space-between', marginBottom: 20 }}>
-          <Text style={{ fontWeight: 'bold', fontSize: fontSize.small, marginBottom: 10 }}>Stavke</Text>
+          <Text style={styles.subtitle}>Stavke</Text>
           <ActionButton icon={PlusIcon} onPress={() => addProductSheetRef.current?.present()} />
         </View>
         <ListItem />
@@ -67,5 +67,12 @@ const NewExpenseScreen: React.FC<NewExpenseScreenProps> = () => {
     </SafeAreaView>
   );
 };
+
+const styles = StyleSheet.create({
+  subtitle: {
+    fontWeight: 'bold',
+    fontSize: fontSize.normal,
+  },
+});
 
 export default NewExpenseScreen;

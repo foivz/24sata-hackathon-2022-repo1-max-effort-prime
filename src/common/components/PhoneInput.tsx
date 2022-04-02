@@ -42,7 +42,7 @@ const styles = StyleSheet.create({
     paddingHorizontal: 20,
     backgroundColor: colors.whiteSmoke,
     borderRadius: 10,
-    paddingVertical: 10,
+    paddingVertical: 12,
   },
 });
 

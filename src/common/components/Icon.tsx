@@ -1,7 +1,7 @@
-import React from "react";
+import React from 'react';
 
-import { ViewStyle } from "react-native";
-import { SvgProps } from "react-native-svg";
+import { ViewStyle } from 'react-native';
+import { SvgProps } from 'react-native-svg';
 
 export interface IconProps extends SvgProps {
   icon: React.FunctionComponent;
@@ -15,7 +15,7 @@ export interface IconProps extends SvgProps {
 
 const Icon: React.FunctionComponent<IconProps> = ({
   icon,
-  color = "white",
+  color = 'white',
   width = 20,
   height = 20,
   style,
