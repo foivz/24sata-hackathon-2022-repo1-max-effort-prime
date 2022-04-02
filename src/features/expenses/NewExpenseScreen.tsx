@@ -55,11 +55,11 @@ const NewExpenseScreen: React.FC<NewExpenseScreenProps> = () => {
           <Text style={styles.subtitle}>Stavke</Text>
           <ActionButton icon={PlusIcon} onPress={() => addProductSheetRef.current?.present()} />
         </View>
+        {/* <ListItem />
         <ListItem />
         <ListItem />
         <ListItem />
-        <ListItem />
-        <ListItem />
+        <ListItem /> */}
       </ScrollView>
       <Button title="Spremi trošak" variant="primary" containerStyle={{ marginBottom: 20 }} />
       <AddProductSheet sheetRef={addProductSheetRef} />
