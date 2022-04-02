@@ -10,6 +10,7 @@ import { fontSize } from '../../constants/typography';
 import { PencilIcon } from './assets';
 import useModal from '../../hooks/useModal';
 import { PlusIcon } from '../../common/assets/icons';
+import { VictoryAxis, VictoryChart, VictoryLine, VictoryTheme } from 'victory-native';
 
 const DashboardScreen = () => {
   const { openModal } = useModal();
@@ -23,6 +24,35 @@ const DashboardScreen = () => {
           <ActionButton icon={PlusIcon} iconSize={28} />
         </View>
         <Text style={{ color: colors.gray }}>Potrošnja ovaj mjesec</Text>
+
+        <View>
+          <VictoryChart width={300} padding={{ left: 10, right: 20, bottom: 30 }} height={200}>
+            <VictoryAxis
+              style={{
+                grid: { stroke: 'none' },
+                axis: { stroke: 'none' },
+                tickLabels: { fill: colors.gray },
+              }}
+              tickCount={4}
+              // tickFormat={(value) => value.toFixed(0)}
+            />
+            <VictoryLine
+              interpolation={'basis'}
+              style={{
+                data: { stroke: colors.green },
+                parent: { border: '1px solid #ccc' },
+              }}
+              data={[
+                { x: 'Sij', y: 350 },
+                { x: 'Velj', y: 380 },
+                { x: 'Ozu', y: 420 },
+                { x: 'Tra', y: 380 },
+                { x: 'Svi', y: 450 },
+                { x: 'Lip', y: 380 },
+              ]}
+            />
+          </VictoryChart>
+        </View>
       </Card>
 
       <Card>

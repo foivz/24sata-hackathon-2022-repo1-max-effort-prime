@@ -52,6 +52,7 @@ const styles = StyleSheet.create({
   },
   sentText: {
     fontSize: fontSize.small,
+    color: colors.green,
   },
 });
 
