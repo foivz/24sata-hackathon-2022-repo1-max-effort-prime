@@ -22,13 +22,16 @@ const NewGroupScreen: React.FC<NewGroupScreenProps> = () => {
       <TextField placeholder="Naziv grupe" />
       <Space height={30} />
 
+      <View style={styles.flexRow}>
+        <Text style={{ fontWeight: 'bold', fontSize: fontSize.large }}>👪 Članovi</Text>
+        <ActionButton icon={PlusIcon} onPress={() => navigation.navigate(screen.NEW_GROUP_SHEET_SELECT_CONTACT)} />
+      </View>
+      <Space height={30} />
+
       <GroupMember name="Filip Bel" />
 
       <Space height={40} />
 
-      {/* <Text style={styles.title}>💰 Zajednički troškovi</Text>
-       <Space height={15} />
-      <ExpenseEntry /> */}
       <Space height={15} />
 
       <Text style={styles.title}>📈 Mjesečni budžet</Text>
@@ -47,15 +50,6 @@ const NewGroupScreen: React.FC<NewGroupScreenProps> = () => {
       </View>
 
       <Button variant="primary" title="Kreiraj grupu" containerStyle={{ marginTop: 40 }} />
-
-      {/* <View style={styles.flexRow}>
-        <Text style={styles.title}>📈 Mjesečni budžet</Text>
-        <ActionButton icon={PencilIcon} />
-      </View>
-      <Space height={15} />
-      <Text style={{ fontWeight: '500', fontSize: fontSize.medium }}>76 HRK</Text>
-      <Text style={{ marginVertical: 10, color: colors.gray }}>Preostalo od mjesečnog budžeta</Text>
-      <Progress /> */}
     </View>
   );
 };
