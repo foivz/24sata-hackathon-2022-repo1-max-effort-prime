@@ -8,20 +8,27 @@ import { Progress } from './components';
 import colors from '../../constants/colors';
 import { fontSize } from '../../constants/typography';
 import { PencilIcon } from './assets';
+import useModal from '../../hooks/useModal';
+import { PlusIcon } from '../../common/assets/icons';
 
 const DashboardScreen = () => {
+  const { openModal } = useModal();
+
   return (
     <SafeAreaView style={styles.container}>
       <Text style={styles.title}>Bok, Filip!</Text>
       <View style={styles.card}>
-        <Text>104 HRK</Text>
-        <Text>Potrošnja ovaj mjesec</Text>
+        <View style={{ flexDirection: 'row', justifyContent: 'space-between', alignItems: 'center' }}>
+          <Text style={{ fontWeight: '500', fontSize: fontSize.mediumLarge }}>104 HRK</Text>
+          <ActionButton icon={PlusIcon} iconSize={28} />
+        </View>
+        <Text style={{ color: colors.gray }}>Potrošnja ovaj mjesec</Text>
       </View>
 
       <View style={styles.card}>
         <View style={{ flexDirection: 'row', justifyContent: 'space-between', alignItems: 'center' }}>
           <Text style={{ fontWeight: '500', fontSize: fontSize.mediumLarge }}>76 HRK</Text>
-          <ActionButton icon={PencilIcon} />
+          <ActionButton icon={PencilIcon} onPress={() => openModal('ChangeBudgetModal')} />
         </View>
         <Text style={{ color: colors.gray }}>Preostalo od mjesečnog budžeta</Text>
         <Space height={10} />
