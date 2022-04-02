@@ -7,12 +7,19 @@ import colors from '../../../constants/colors';
 import useModal from '../../../hooks/useModal';
 import { fontSize } from '../../../constants/typography';
 import useSearchProduct from '../../hooks/useSearchProduct';
+import { useMutation } from 'react-query';
+import { createProduct } from '../../api';
 
-interface SheetContentProps {}
+interface SheetContentProps {
+  onSelected: (product: any) => void;
+}
 
-const SheetContent: React.FunctionComponent<SheetContentProps> = () => {
+const SheetContent: React.FunctionComponent<SheetContentProps> = ({ onSelected }) => {
   const { openModal } = useModal();
   const [query, setQuery] = useState<string | null>(null);
+  const mutation = useMutation(createProduct);
+
+  const handleCreateNewProduct = () => {};
 
   const { data } = useSearchProduct(query);
 
@@ -33,6 +40,7 @@ const SheetContent: React.FunctionComponent<SheetContentProps> = () => {
                     icon={PlusIcon}
                     color={colors.green}
                     iconSize={35}
+                    onPress={handleCreateNewProduct}
                     style={{ borderRadius: 30, marginRight: 20, width: 48, height: 48 }}
                   />
                   <Text style={{ color: colors.gray, fontSize: fontSize.smallToNormal }}>Kreiraj proizvod "{query}"</Text>
@@ -43,7 +51,7 @@ const SheetContent: React.FunctionComponent<SheetContentProps> = () => {
           </View>
         )}
         renderItem={({ item }) => (
-          <TouchableOpacity style={{ flexDirection: 'row', alignItems: 'center' }} onPress={() => openModal('ChangeQuantityModal')}>
+          <TouchableOpacity style={{ flexDirection: 'row', alignItems: 'center' }} onPress={() => onSelected(item)}>
             <Image source={{ uri: item.imageUrl }} style={{ width: 50, height: 50, marginRight: 18 }} />
             <Text style={{ fontSize: fontSize.smallToNormal }}>{item.name}</Text>
           </TouchableOpacity>
