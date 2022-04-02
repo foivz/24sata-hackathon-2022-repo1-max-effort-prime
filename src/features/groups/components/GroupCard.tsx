@@ -11,7 +11,6 @@ interface GroupCardProps extends TouchableOpacityProps {
 }
 
 const GroupCard: React.FC<GroupCardProps> = ({ group, ...props }) => {
-  console.log('group', group);
   return (
     <TouchableOpacity style={{ padding: 20, backgroundColor: colors.white, borderRadius: 20 }} {...props}>
       <Text style={{ fontWeight: 'bold', fontSize: fontSize.small }}>{group.name}</Text>

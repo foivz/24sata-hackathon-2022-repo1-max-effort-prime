@@ -14,6 +14,8 @@ import screen from '../../navigation/screens';
 import { GroupMember } from './components';
 import useGroups from './hooks/useGroups';
 import { ScrollView } from 'react-native-gesture-handler';
+import { useQuery } from 'react-query';
+import { getGroupMembers } from './api/groups';
 
 interface GroupDetailsScreenProps {}
 
@@ -21,6 +23,9 @@ const GroupDetailsScreen: React.FC<GroupDetailsScreenProps> = () => {
   const { openModal } = useModal();
   const navigation = useNavigation();
   const { activeGroup } = useGroups();
+  const { data } = useQuery(['groupMembers', activeGroup._id], () => getGroupMembers(activeGroup._id));
+
+  console.log('data', data);
 
   return (
     <ScrollView>
@@ -32,7 +37,7 @@ const GroupDetailsScreen: React.FC<GroupDetailsScreenProps> = () => {
 
       <FlatList
         scrollEnabled={false}
-        data={activeGroup.members}
+        data={data}
         keyExtractor={(item) => item._id}
         renderItem={({ item }) => <GroupMember member={item} />}
         ItemSeparatorComponent={() => <Divider />}

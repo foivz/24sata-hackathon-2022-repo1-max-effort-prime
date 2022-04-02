@@ -1,5 +1,5 @@
 import React from 'react';
-import { TouchableOpacity, TouchableOpacityProps, ViewStyle, StyleSheet } from 'react-native';
+import { TouchableOpacity, TouchableOpacityProps, ViewStyle, StyleSheet, ActivityIndicator } from 'react-native';
 import colors from '../../constants/colors';
 
 import Icon from './Icon';
@@ -9,6 +9,7 @@ interface ActionButtonProps extends TouchableOpacityProps {
   iconSize?: number;
   color?: string;
   style?: ViewStyle;
+  loading?: boolean;
   backgroundColor?: string;
 }
 
@@ -18,11 +19,12 @@ const ActionButton: React.FunctionComponent<ActionButtonProps> = ({
   color = colors.green,
   backgroundColor = colors.weakMint,
   style,
+  loading,
   ...props
 }) => {
   return (
     <TouchableOpacity style={[styles.container, style, { backgroundColor }]} {...props}>
-      <Icon icon={icon} width={iconSize} height={iconSize} stroke={color} />
+      {loading ? <ActivityIndicator color="white" /> : <Icon icon={icon} width={iconSize} height={iconSize} stroke={color} />}
     </TouchableOpacity>
   );
 };
