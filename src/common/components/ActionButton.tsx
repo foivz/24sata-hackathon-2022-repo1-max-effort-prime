@@ -1,20 +1,32 @@
 import React from 'react';
-import { View } from 'react-native';
+import { TouchableOpacity, TouchableOpacityProps, ViewStyle, StyleSheet } from 'react-native';
 import colors from '../../constants/colors';
 
 import Icon from './Icon';
 
-interface ActionButtonProps {
+interface ActionButtonProps extends TouchableOpacityProps {
   icon: React.FunctionComponent;
+  iconSize?: number;
   color: string;
+  style?: ViewStyle;
 }
 
-const ActionButton: React.FunctionComponent<ActionButtonProps> = ({ icon, color }) => {
+const ActionButton: React.FunctionComponent<ActionButtonProps> = ({ icon, iconSize = 20, color, style, ...props }) => {
   return (
-    <View style={{ justifyContent: 'center', alignItems: 'center', backgroundColor: colors.weakMint, padding: 10, borderRadius: 10 }}>
-      <Icon icon={icon} width={20} height={20} stroke={color} />
-    </View>
+    <TouchableOpacity style={[styles.container, style]} {...props}>
+      <Icon icon={icon} width={iconSize} height={iconSize} stroke={color} />
+    </TouchableOpacity>
   );
 };
+
+const styles = StyleSheet.create({
+  container: {
+    justifyContent: 'center',
+    alignItems: 'center',
+    backgroundColor: colors.weakMint,
+    padding: 10,
+    borderRadius: 10,
+  },
+});
 
 export default ActionButton;

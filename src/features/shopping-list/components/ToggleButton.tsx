@@ -10,7 +10,14 @@ interface ToggleButtonProps extends TouchableOpacityProps {
 const ToggleButton: React.FunctionComponent<ToggleButtonProps> = ({ text, active, ...props }) => {
   return (
     <TouchableOpacity
-      style={{ padding: 20, backgroundColor: colors.white, borderRadius: 14, justifyContent: 'center', alignItems: 'center' }}
+      style={{
+        paddingHorizontal: 20,
+        paddingVertical: 13,
+        backgroundColor: active ? colors.green : colors.white,
+        borderRadius: 14,
+        justifyContent: 'center',
+        alignItems: 'center',
+      }}
       {...props}>
       <Text style={{ color: active ? colors.white : colors.black }}>{text}</Text>
     </TouchableOpacity>
