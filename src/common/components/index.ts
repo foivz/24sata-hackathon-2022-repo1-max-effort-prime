@@ -7,3 +7,4 @@ export { default as QuantityPicker } from './QuantityPicker';
 export { default as ModalContainer } from './ModalContainer';
 export { default as Avatar } from './Avatar';
 export { default as Progress } from './Progress';
+export { default as Divider } from './Divider';

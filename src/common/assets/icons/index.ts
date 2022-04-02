@@ -5,3 +5,4 @@ export { default as SearchIcon } from './search.svg';
 export { default as MinusIcon } from './minus.svg';
 export { default as ArrowLeftIcon } from './arrow-left.svg';
 export { default as TrashIcon } from './trash.svg';
+export { default as CheckCircleIcon } from './check-circle.svg';
