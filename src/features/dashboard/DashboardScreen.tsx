@@ -68,7 +68,7 @@ const DashboardScreen = () => {
           <Text style={{ color: colors.gray }}>Preostalo od mjesečnog budžeta</Text>
           <Space height={10} />
 
-          <Progress />
+          <Progress endValue={200} />
         </Card>
 
         <Card>

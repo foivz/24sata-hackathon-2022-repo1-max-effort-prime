@@ -1,6 +1,6 @@
 import 'react-native-gesture-handler';
 import React from 'react';
-import { StyleSheet } from 'react-native';
+import { LogBox, StyleSheet } from 'react-native';
 import { StatusBar } from 'expo-status-bar';
 import { ActionSheetProvider } from '@expo/react-native-action-sheet';
 import { SafeAreaProvider } from 'react-native-safe-area-context';
@@ -16,6 +16,8 @@ import Navigation from './src/navigation/Navigation';
 import store from './src/common/store';
 import { queryClient } from './src/misc/queryClient';
 import { modalStack } from './src/misc/initModalfy';
+
+LogBox.ignoreLogs(['VirtualizedLists should never be nested']);
 
 const App = () => {
   const isLoadingComplete = useCachedResources();

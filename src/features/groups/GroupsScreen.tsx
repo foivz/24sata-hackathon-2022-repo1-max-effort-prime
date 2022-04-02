@@ -1,6 +1,7 @@
 import React, { useRef } from 'react';
 import { View, Text, FlatList } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
+import { useQuery } from 'react-query';
 
 import { ActionButton, Space } from '../../common/components';
 import { GroupCard } from './components';
@@ -11,13 +12,19 @@ import { BottomSheetModal } from '@gorhom/bottom-sheet';
 import NewGroupSheet from './NewGroupSheet/NewGroupSheet';
 import GroupDetailsSheet from './GroupDetailsSheet/GroupDetailsSheet';
 import useGroups from './hooks/useGroups';
+import { getGroups } from './api/groups';
+import useUser from '../../common/hooks/useUser';
 
 interface GroupsScreenProps {}
 
 const GroupsScreen: React.FC<GroupsScreenProps> = () => {
+  const user = useUser();
+  const { data } = useQuery('groups', () => getGroups(user?._id), {
+    enabled: !!user,
+  });
   const newGroupSheetRef = useRef<BottomSheetModal>(null);
   const groupDetailsSheetRef = useRef<BottomSheetModal>(null);
-  const { data } = useGroups();
+  const { selectGroup } = useGroups();
 
   return (
     <SafeAreaView style={{ flex: 1, paddingHorizontal: 28 }}>
@@ -29,7 +36,15 @@ const GroupsScreen: React.FC<GroupsScreenProps> = () => {
       <FlatList
         data={data}
         keyExtractor={(item) => item._id}
-        renderItem={({ item }) => <GroupCard group={item} />}
+        renderItem={({ item }) => (
+          <GroupCard
+            group={item}
+            onPress={() => {
+              selectGroup(item);
+              groupDetailsSheetRef.current?.present();
+            }}
+          />
+        )}
         ItemSeparatorComponent={() => <Space height={20} />}
       />
       <NewGroupSheet sheetRef={newGroupSheetRef} />

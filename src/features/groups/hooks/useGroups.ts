@@ -1,14 +1,18 @@
-import { useQuery } from 'react-query';
+import { useAppDispatch, useAppSelector } from '../../../common/store';
+import { selectActiveGroup } from '../store/groups';
 
-import useUser from '../../../common/hooks/useUser';
-import { getGroups } from '../api/groups';
+const useGroups = () => {
+  const groupState = useAppSelector((state) => state.groups);
+  const dispatch = useAppDispatch();
 
-const useExpenses = () => {
-  const user = useUser();
-  const query = useQuery('groups', () => getGroups(user?._id), {
-    enabled: !!user,
-  });
-  return query;
+  const selectGroup = (group: any) => {
+    dispatch(selectActiveGroup(group));
+  };
+
+  return {
+    selectGroup,
+    activeGroup: groupState.activeGroup,
+  };
 };
 
-export default useExpenses;
+export default useGroups;

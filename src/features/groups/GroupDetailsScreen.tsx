@@ -1,8 +1,8 @@
 import React from 'react';
-import { View, Text, StyleSheet } from 'react-native';
+import { View, Text, StyleSheet, FlatList } from 'react-native';
 import { useNavigation } from '@react-navigation/native';
 
-import { ActionButton, Avatar, Progress, Space } from '../../common/components';
+import { ActionButton, Avatar, Divider, Progress, Space } from '../../common/components';
 import ExpenseEntry from './components/ExpenseEntry';
 
 import { PlusIcon, TrashIcon } from '../../common/assets/icons';
@@ -12,22 +12,31 @@ import { PencilIcon } from '../dashboard/assets';
 import useModal from '../../hooks/useModal';
 import screen from '../../navigation/screens';
 import { GroupMember } from './components';
+import useGroups from './hooks/useGroups';
+import { ScrollView } from 'react-native-gesture-handler';
 
 interface GroupDetailsScreenProps {}
 
 const GroupDetailsScreen: React.FC<GroupDetailsScreenProps> = () => {
   const { openModal } = useModal();
   const navigation = useNavigation();
+  const { activeGroup } = useGroups();
 
   return (
-    <View>
+    <ScrollView>
       <View style={styles.flexRow}>
-        <Text style={{ fontWeight: 'bold', fontSize: fontSize.large }}>Obitelj</Text>
+        <Text style={{ fontWeight: 'bold', fontSize: fontSize.large }}>{activeGroup.name}</Text>
         <ActionButton icon={PlusIcon} onPress={() => navigation.navigate(screen.GROUP_DETAILS_SHEET_SELECT_CONTACT)} />
       </View>
       <Space height={30} />
 
-      <GroupMember name="Filip Bel" />
+      <FlatList
+        scrollEnabled={false}
+        data={activeGroup.members}
+        keyExtractor={(item) => item._id}
+        renderItem={({ item }) => <GroupMember member={item} />}
+        ItemSeparatorComponent={() => <Divider />}
+      />
 
       <Space height={50} />
 
@@ -43,8 +52,8 @@ const GroupDetailsScreen: React.FC<GroupDetailsScreenProps> = () => {
       <Space height={15} />
       <Text style={{ fontWeight: '500', fontSize: fontSize.medium }}>76 HRK</Text>
       <Text style={{ marginVertical: 10, color: colors.gray }}>Preostalo od mjesečnog budžeta</Text>
-      <Progress />
-    </View>
+      <Progress endValue={activeGroup.monthlyBudget} />
+    </ScrollView>
   );
 };
 

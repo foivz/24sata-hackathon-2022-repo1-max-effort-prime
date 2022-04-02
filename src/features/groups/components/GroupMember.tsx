@@ -8,15 +8,17 @@ import colors from '../../../constants/colors';
 import { fontSize } from '../../../constants/typography';
 
 interface GroupMemberProps {
-  name: string;
+  member: any;
 }
 
-const GroupMember: React.FunctionComponent<GroupMemberProps> = ({ name }) => {
+const GroupMember: React.FunctionComponent<GroupMemberProps> = ({ member }) => {
   return (
     <View style={styles.flexRow}>
       <View style={{ flexDirection: 'row', alignItems: 'center' }}>
-        <Avatar style={{ marginRight: 20 }} />
-        <Text style={styles.title}>{name}</Text>
+        <Avatar style={{ marginRight: 20 }} name={`${member.firstName} ${member.lastName}`} />
+        <Text style={styles.title}>
+          {member.firstName} {member.lastName}
+        </Text>
       </View>
       <ActionButton icon={TrashIcon} color={colors.paradisePink} backgroundColor={colors.sentimentalPink} />
     </View>
