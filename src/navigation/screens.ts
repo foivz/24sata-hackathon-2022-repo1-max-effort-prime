@@ -11,6 +11,7 @@ enum screen {
   MENU = 'Menu',
   CHAT = 'Chat',
   TAB_NAVIGATOR = 'TabNavigator',
+  GROUPS = 'Groups',
 }
 
 export default screen;
