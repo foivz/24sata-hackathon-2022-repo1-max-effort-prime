@@ -5,6 +5,6 @@ export default {
   green: '#22C55E',
   gray: '#96A0A9',
   weakMint: '#DFF0E5',
-  textField: '#F5F5F5',
+  whiteSmoke: '#F5F5F5',
   darkSouls: '#A3A3A3',
 };

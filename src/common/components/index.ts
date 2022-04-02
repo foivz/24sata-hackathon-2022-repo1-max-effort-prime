@@ -5,3 +5,4 @@ export { default as ActionButton } from './ActionButton';
 export { default as PhoneInput } from './PhoneInput';
 export { default as QuantityPicker } from './QuantityPicker';
 export { default as ModalContainer } from './ModalContainer';
+export { default as Avatar } from './Avatar';

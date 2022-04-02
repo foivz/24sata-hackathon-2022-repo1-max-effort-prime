@@ -40,7 +40,7 @@ const styles = StyleSheet.create({
   text: {},
   input: {
     paddingHorizontal: 20,
-    backgroundColor: colors.textField,
+    backgroundColor: colors.whiteSmoke,
     borderRadius: 10,
     paddingVertical: 10,
   },

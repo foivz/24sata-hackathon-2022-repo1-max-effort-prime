@@ -4,6 +4,8 @@ enum screen {
   REGISTER = 'Register',
   EXPENSES = 'Expenses',
   NEW_EXPENSE = 'NewExpense',
+  SPLIT_EXPENSES_SHEET_SPLIT = 'SplitExpensesSheetSplit',
+  SPLIT_EXPENSES_SHEET_PRICES = 'SplitExpensesSheetPrices',
 }
 
 export default screen;

@@ -29,7 +29,7 @@ const ListItem: React.FunctionComponent<ListItemProps> = () => {
           <Text style={{ color: colors.gray }}>3 komada</Text>
         </View>
       </View>
-      <View style={{ backgroundColor: colors.textField, borderRadius: 8, padding: 9, alignSelf: 'flex-start' }}>
+      <View style={{ backgroundColor: colors.whiteSmoke, borderRadius: 8, padding: 9, alignSelf: 'flex-start' }}>
         <Text style={{ color: colors.gray }}>18 HRK</Text>
       </View>
     </View>

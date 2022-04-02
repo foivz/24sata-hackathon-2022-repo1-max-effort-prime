@@ -22,7 +22,7 @@ const TextField: React.FunctionComponent<TextFieldProps> = ({ icon, iconProps, s
 
 const styles = StyleSheet.create({
   container: {
-    backgroundColor: colors.textField,
+    backgroundColor: colors.whiteSmoke,
     borderRadius: 10,
     paddingVertical: 10,
     flexDirection: 'row',

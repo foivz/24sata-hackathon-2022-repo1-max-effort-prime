@@ -37,7 +37,7 @@ const ListItem: React.FunctionComponent<ListItemProps> = () => {
           <Text style={{ color: colors.gray }}>Dodano 2.4.</Text>
         </View>
       </View>
-      <TouchableOpacity style={{ backgroundColor: colors.textField, borderRadius: 8, padding: 9 }} onPress={openActionSheet}>
+      <TouchableOpacity style={{ backgroundColor: colors.whiteSmoke, borderRadius: 8, padding: 9 }} onPress={openActionSheet}>
         <Icon icon={DotsHorizontalIcon} width={20} height={20} stroke={colors.darkSouls} />
       </TouchableOpacity>
     </View>
