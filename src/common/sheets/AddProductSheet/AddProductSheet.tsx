@@ -4,9 +4,10 @@ import SheetContent from './SheetContent';
 
 interface AddProductSheetProps {
   sheetRef: React.MutableRefObject<BottomSheetModal | null>;
+  onSelected: (product: any) => void;
 }
 
-const AddProductSheet: React.FunctionComponent<AddProductSheetProps> = ({ sheetRef }) => {
+const AddProductSheet: React.FunctionComponent<AddProductSheetProps> = ({ sheetRef, onSelected }) => {
   const snapPoints = useMemo(() => ['83%'], []);
 
   return (
@@ -17,7 +18,7 @@ const AddProductSheet: React.FunctionComponent<AddProductSheetProps> = ({ sheetR
       enablePanDownToClose
       handleComponent={() => null}
       backdropComponent={(props) => <BottomSheetBackdrop disappearsOnIndex={-1} appearsOnIndex={0} {...props} />}>
-      <SheetContent sheetRef={sheetRef} />
+      <SheetContent sheetRef={sheetRef} onSelected={onSelected} />
     </BottomSheetModal>
   );
 };
