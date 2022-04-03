@@ -8,11 +8,11 @@ import { fontSize } from '../../../constants/typography';
 import useSearchProduct from '../../hooks/useSearchProduct';
 
 interface SheetContentProps {
-  onSelected: (product: any) => void;
+  onSelected?: (product: any) => void;
 }
 
 const SheetContent: React.FunctionComponent<SheetContentProps> = ({ onSelected }) => {
-  const [query, setQuery] = useState<string | null>('null');
+  const [query, setQuery] = useState<string>('');
 
   const handleCreateNewProduct = () => {};
 

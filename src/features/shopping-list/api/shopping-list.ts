@@ -5,7 +5,8 @@ export const fetchShoppingList = async (userId: string) => {
   return response.data.data;
 };
 
-export const updateShoppingList = async ({ data }) => {
+export const updateShoppingList = async (data) => {
+  console.log('data', data);
   const response = await api.post(`/users/${data.userId}/shopping-list/regular`, {
     items: data.items,
     user: data.userId,

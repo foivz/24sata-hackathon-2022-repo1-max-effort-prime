@@ -14,10 +14,12 @@ import { fetchShoppingList } from './api/shopping-list';
 import { useQuery } from 'react-query';
 import useUser from '../../common/hooks/useUser';
 import { Space } from '../../common/components';
+import useModal from '../../hooks/useModal';
 
 const ShoppingListScreen = () => {
   const [active, setActive] = useState<'redovna' | 'tjedna'>('redovna');
   const addProductSheetRef = useRef<BottomSheetModal>(null);
+  const { openModal } = useModal();
   const user = useUser();
   const { data } = useQuery(['shoppingList', 'regular'], () => fetchShoppingList(user?._id), { enabled: !!user });
 
@@ -25,6 +27,11 @@ const ShoppingListScreen = () => {
 
   const added = data.items;
   const bought = data.items.filter((item: any) => item.buyedQuantity > 0);
+
+  const onProductSelected = (product: any) => {
+    console.log('product', product);
+    openModal('ChangeQuantityModal', { item: product._id, sheetRef: addProductSheetRef });
+  };
 
   return (
     <SafeAreaView edges={['top', 'right', 'left']} style={styles.container}>
@@ -58,7 +65,7 @@ const ShoppingListScreen = () => {
           />
         )}
       </ScrollView>
-      <AddProductSheet sheetRef={addProductSheetRef} />
+      <AddProductSheet sheetRef={addProductSheetRef} onSelected={onProductSelected} />
     </SafeAreaView>
   );
 };

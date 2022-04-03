@@ -17,8 +17,6 @@ interface ListItemProps {
 }
 
 const ListItem: React.FunctionComponent<ListItemProps> = ({ bought, containerStyle, hideActions, item }) => {
-  console.log('item', item);
-
   const openActionSheet = useActionSheet(
     ['Obriši'],
     (index) => {
