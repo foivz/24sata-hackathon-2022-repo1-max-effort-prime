@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useRef, useState } from 'react';
 import { View, StyleSheet, TextInput, TouchableOpacity } from 'react-native';
 
 import { ActionButton } from '../../../common/components';
@@ -15,18 +15,20 @@ interface BottomBarProps {
 
 const BottomBar: React.FC<BottomBarProps> = ({ onButtonPress, onSend }) => {
   const [message, setMessage] = useState<string>('');
+  const textInputRef = useRef<TextInput>(null);
 
   return (
     <View style={styles.container}>
       <ActionButton icon={PlusIcon} style={styles.button} onPress={onButtonPress} />
 
       <View style={styles.textInputContainer}>
-        <TextInput value={message} onChangeText={(val) => setMessage(val)} style={styles.flex} />
+        <TextInput value={message} onChangeText={(val) => setMessage(val)} style={styles.flex} ref={textInputRef} />
         <TouchableOpacity
           style={styles.iconContainer}
           onPress={() => {
             onSend(message);
             setMessage('');
+            textInputRef.current?.blur();
           }}>
           <Icon icon={SendIcon} width={25} height={25} stroke={colors.green} />
         </TouchableOpacity>
