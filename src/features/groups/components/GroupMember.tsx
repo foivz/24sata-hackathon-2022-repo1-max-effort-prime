@@ -59,7 +59,7 @@ const styles = StyleSheet.create({
     justifyContent: 'space-between',
   },
   title: {
-    fontSize: fontSize.medium,
+    fontSize: fontSize.normal,
     fontWeight: '500',
   },
 });

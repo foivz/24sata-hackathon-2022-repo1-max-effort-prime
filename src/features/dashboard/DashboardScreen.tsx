@@ -78,14 +78,32 @@ const DashboardScreen = () => {
             </Text>
             <Icon icon={ChevronRightIcon} width={25} height={25} stroke={colors.green} />
           </View>
-          <ListItem containerStyle={{ paddingHorizontal: 0, marginBottom: 0 }} hideActions item={{ name: 'Mlijeko' }} />
+          <ListItem
+            containerStyle={{ paddingHorizontal: 0, marginBottom: 0 }}
+            hideActions
+            item={{
+              name: 'Mlijeko',
+              addedQuantity: 2,
+              imageUrl:
+                'https://d17zv3ray5yxvp.cloudfront.net/variants/AeyrZcLWdjgTZmQK81QGYVsB/57ed05bea98bceae5f0eaada26b69cee6c61471d3030f7123d212844a35eba04',
+            }}
+          />
         </Card>
         <Card>
           <View style={{ flexDirection: 'row' }}>
             <Text style={{ flex: 1, fontSize: fontSize.small, marginBottom: 12 }}>Postoje proizvodi na tvojoj listi za kupnju</Text>
             <Icon icon={ChevronRightIcon} width={25} height={25} stroke={colors.green} />
           </View>
-          <ListItem containerStyle={{ paddingHorizontal: 0, marginBottom: 0 }} hideActions item={{ name: 'Banana' }} />
+          <ListItem
+            containerStyle={{ paddingHorizontal: 0, marginBottom: 0 }}
+            hideActions
+            item={{
+              name: 'Banana',
+              addedQuantity: 1,
+              imageUrl:
+                'https://d17zv3ray5yxvp.cloudfront.net/variants/iDhHKo8UqHbAr41PSSdKg2X4/57ed05bea98bceae5f0eaada26b69cee6c61471d3030f7123d212844a35eba04',
+            }}
+          />
         </Card>
       </ScrollView>
     </View>
