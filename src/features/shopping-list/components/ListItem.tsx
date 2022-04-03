@@ -41,7 +41,7 @@ const ListItem: React.FunctionComponent<ListItemProps> = ({ bought, containerSty
         containerStyle,
       ]}>
       <View style={{ flexDirection: 'row', alignItems: 'center' }}>
-        <Image source={require('../assets/mleko.png')} style={{ width: 50, height: 50, marginRight: 18 }} />
+        <Image source={{ uri: item.imageUrl }} style={{ width: 50, height: 50, marginRight: 18 }} />
         <View>
           <Text
             style={{
