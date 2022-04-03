@@ -10,11 +10,12 @@ import colors from '../../constants/colors';
 import { fontSize } from '../../constants/typography';
 import screen from '../../navigation/screens';
 import { GroupMember } from './components';
-import { useAppSelector } from '../../common/store';
+import { useAppDispatch, useAppSelector } from '../../common/store';
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
 import { createGroup } from './api/groups';
 import useUser from '../../common/hooks/useUser';
 import { useBottomSheetModal } from '@gorhom/bottom-sheet';
+import { reset } from './store/groups';
 
 interface NewGroupScreenProps {}
 
@@ -27,6 +28,7 @@ const NewGroupScreen: React.FC<NewGroupScreenProps> = () => {
   const [budget, setBudget] = useState<string>('');
   const queryClient = useQueryClient();
   const createGroupMutation = useMutation(createGroup);
+  const dispatch = useAppDispatch();
   const { dismiss } = useBottomSheetModal();
 
   const handleAddGroup = async () => {
@@ -42,6 +44,8 @@ const NewGroupScreen: React.FC<NewGroupScreenProps> = () => {
       members: [user?._id, ...groupState.addedMembers.map((member) => member._id)],
       createdBy: user?._id,
     });
+
+    dispatch(reset());
 
     queryClient.invalidateQueries('groups');
     dismiss();
