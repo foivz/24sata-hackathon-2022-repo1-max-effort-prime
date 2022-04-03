@@ -25,7 +25,7 @@ const DashboardScreen = () => {
     enabled: !!user,
   });
 
-  console.log(data);
+  if (!data) return null;
 
   return (
     <View style={styles.container}>
@@ -33,7 +33,7 @@ const DashboardScreen = () => {
       <ScrollView contentContainerStyle={{ paddingHorizontal: 28 }}>
         <Card>
           <View style={{ flexDirection: 'row', justifyContent: 'space-between', alignItems: 'center' }}>
-            <Text style={{ fontWeight: '500', fontSize: fontSize.mediumLarge }}>104 HRK</Text>
+            <Text style={{ fontWeight: '500', fontSize: fontSize.mediumLarge }}>{data.currentMonthExpenses} HRK</Text>
             <ActionButton icon={PlusIcon} iconSize={28} />
           </View>
           <Text style={{ color: colors.gray, marginBottom: 10 }}>Potrošnja ovaj mjesec</Text>
