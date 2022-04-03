@@ -1,4 +1,5 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
+import { nanoid } from 'nanoid/non-secure';
 
 interface ChatState {
   message: string;
@@ -7,7 +8,13 @@ interface ChatState {
 
 const initialState: ChatState = {
   message: '',
-  messages: [],
+  messages: [
+    {
+      id: nanoid(),
+      type: 'received',
+      message: 'Pozdrav! Ja sam tvoj chatbot Šparo! Klikni na ikonu su plusićom te odaberi kako ti mogu pomoći! 😉',
+    },
+  ],
 };
 
 export const chatSlice = createSlice({
@@ -23,7 +30,7 @@ export const chatSlice = createSlice({
       state.messages = messages;
     },
     addMessage: (state: ChatState, action: PayloadAction<any>) => {
-      state.messages.unshift(action.payload);
+      state.messages.push(action.payload);
     },
   },
 });

@@ -11,15 +11,20 @@ interface ChatActionProps extends TouchableOpacityProps {
 
 const ChatAction: React.FC<ChatActionProps> = ({ title, style, ...props }) => {
   return (
-    <TouchableOpacity
-      style={[{ justifyContent: 'center', alignItems: 'center', backgroundColor: colors.green, padding: 10, borderRadius: 10 }, style]}
-      {...props}>
+    <TouchableOpacity style={[styles.container, style]} {...props}>
       <Text style={styles.title}>{title}</Text>
     </TouchableOpacity>
   );
 };
 
 const styles = StyleSheet.create({
+  container: {
+    justifyContent: 'center',
+    alignItems: 'center',
+    backgroundColor: colors.green,
+    padding: 10,
+    borderRadius: 10,
+  },
   title: {
     color: colors.white,
     fontSize: fontSize.small,
