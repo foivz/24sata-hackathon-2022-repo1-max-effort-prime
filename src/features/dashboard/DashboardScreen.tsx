@@ -39,7 +39,7 @@ const DashboardScreen = () => {
           <Text style={{ color: colors.gray, marginBottom: 10 }}>Potrošnja ovaj mjesec</Text>
 
           <View>
-            <VictoryChart width={300} padding={{ left: 30, right: 20, bottom: 30 }} height={200}>
+            <VictoryChart width={300} padding={{ left: 34, right: 20, bottom: 30, top: 20 }} height={200}>
               <VictoryAxis
                 style={{
                   grid: { stroke: 'none' },
@@ -51,6 +51,7 @@ const DashboardScreen = () => {
               />
               <VictoryAxis
                 dependentAxis
+                tickCount={4}
                 tickFormat={(label) => label}
                 style={{
                   axis: { stroke: 'none' },
