@@ -1,8 +1,8 @@
 import React from 'react';
-import { View, Text, TouchableOpacity } from 'react-native';
+import { View, Text, TouchableOpacity, FlatList } from 'react-native';
 import { useNavigation } from '@react-navigation/native';
 
-import { Avatar } from '../../../common/components';
+import { Avatar, Space } from '../../../common/components';
 import Icon from '../../../common/components/Icon';
 
 import colors from '../../../constants/colors';
@@ -11,22 +11,26 @@ import { fontSize } from '../../../constants/typography';
 import screen from '../../../navigation/screens';
 
 interface GroupProps {
-  name: string;
+  group: any;
 }
 
-const Group: React.FunctionComponent<GroupProps> = ({ name }) => {
+const Group: React.FunctionComponent<GroupProps> = ({ group }) => {
   const navigation = useNavigation();
 
   return (
-    <TouchableOpacity onPress={() => navigation.navigate(screen.SPLIT_EXPENSES_SHEET_PRICES)}>
-      <Text style={{ color: colors.black, fontWeight: 'bold', fontSize: fontSize.normal, marginBottom: 12 }}>{name}</Text>
+    <TouchableOpacity onPress={() => navigation.navigate(screen.SPLIT_EXPENSES_SHEET_PRICES, { group })}>
+      <Text style={{ color: colors.black, fontWeight: 'bold', fontSize: fontSize.normal, marginBottom: 12 }}>{group.name}</Text>
       <View style={{ flexDirection: 'row', alignItems: 'center', justifyContent: 'space-between' }}>
         <View style={{ flexDirection: 'row', alignItems: 'center' }}>
-          <Avatar />
-          <Avatar />
-          <Avatar />
+          <FlatList
+            horizontal
+            data={group.members}
+            keyExtractor={(item) => item._id}
+            renderItem={({ item }) => <Avatar name={`${item.firstName} ${item.lastName}`} />}
+            ItemSeparatorComponent={() => <Space width={10} />}
+          />
+          <Icon icon={ChevronRightIcon} width={30} height={30} stroke={colors.green} />
         </View>
-        <Icon icon={ChevronRightIcon} width={30} height={30} stroke={colors.green} />
       </View>
     </TouchableOpacity>
   );

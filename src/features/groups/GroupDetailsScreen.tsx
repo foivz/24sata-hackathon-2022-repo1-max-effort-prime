@@ -25,8 +25,6 @@ const GroupDetailsScreen: React.FC<GroupDetailsScreenProps> = () => {
   const { activeGroup } = useGroups();
   const { data } = useQuery(['groupMembers', activeGroup._id], () => getGroupMembers(activeGroup._id));
 
-  console.log('data', data);
-
   return (
     <ScrollView>
       <View style={styles.flexRow}>
@@ -48,7 +46,7 @@ const GroupDetailsScreen: React.FC<GroupDetailsScreenProps> = () => {
       <Text style={styles.title}>💰 Zajednički troškovi</Text>
       <Space height={25} />
       <ExpenseEntry />
-      <Space height={25} />
+      <Space height={35} />
 
       <View style={styles.flexRow}>
         <Text style={styles.title}>📈 Mjesečni budžet</Text>

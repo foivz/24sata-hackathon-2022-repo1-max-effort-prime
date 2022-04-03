@@ -85,7 +85,7 @@ const SelectContactScreen: React.FC<SelectContactScreenProps> = () => {
           color={colors.darkSouls}
           onPress={() => navigation.goBack()}
         />
-        <Space height={10} />
+        <Space height={15} />
         <Text style={{ fontWeight: 'bold', fontSize: fontSize.large }}>Dodaj člana</Text>
 
         <Space height={20} />

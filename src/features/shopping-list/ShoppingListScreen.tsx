@@ -48,12 +48,29 @@ const ShoppingListScreen = () => {
           <ToggleButton text="Tjedna" onPress={() => setActive('tjedna')} active={active === 'tjedna'} />
         </View>
 
-        <FlatList
-          data={added}
-          keyExtractor={(added) => added._id}
-          renderItem={({ item }) => <ListItem item={item} />}
-          ListEmptyComponent={() => <Text>Bez stavki</Text>}
-        />
+        {active === 'redovna' ? (
+          <FlatList
+            data={added}
+            keyExtractor={(added) => added._id}
+            renderItem={({ item }) => <ListItem item={item} />}
+            ListEmptyComponent={() => <Text>Bez stavki</Text>}
+          />
+        ) : (
+          <FlatList
+            data={[
+              {
+                _id: '123',
+                name: 'Maslac',
+                imageUrl:
+                  'https://d17zv3ray5yxvp.cloudfront.net/variants/aXbbmFJ4uDuK8GNReyxemUx2/57ed05bea98bceae5f0eaada26b69cee6c61471d3030f7123d212844a35eba04',
+                addedQuantity: 2,
+              },
+            ]}
+            keyExtractor={(added) => added._id}
+            renderItem={({ item }) => <ListItem item={item} />}
+            ListEmptyComponent={() => <Text>Bez stavki</Text>}
+          />
+        )}
 
         <Space height={10} />
         {bought.length > 0 && (
