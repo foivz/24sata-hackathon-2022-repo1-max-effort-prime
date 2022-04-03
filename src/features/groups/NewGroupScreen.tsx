@@ -70,6 +70,7 @@ const NewGroupScreen: React.FC<NewGroupScreenProps> = () => {
           keyExtractor={(item) => item._id}
           renderItem={({ item }) => <GroupMember member={item} />}
           ItemSeparatorComponent={() => <Divider />}
+          ListEmptyComponent={() => <Text>Nema članova</Text>}
         />
 
         <Space height={40} />

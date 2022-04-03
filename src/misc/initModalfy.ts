@@ -32,6 +32,7 @@ export interface ModalStackParams {
     quantity: number;
     name: string;
     imageUrl: string;
+    sheetRef?: React.MutableRefObject<BottomSheetModal | null>;
   };
 }
 

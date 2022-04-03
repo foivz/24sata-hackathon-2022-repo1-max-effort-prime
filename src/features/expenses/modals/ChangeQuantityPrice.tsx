@@ -32,6 +32,10 @@ const ChangeQuantityPrice: React.FunctionComponent<ChangeQuantityPriceProps> = (
       }),
     );
 
+    const sheetRef = getParam('sheetRef');
+
+    if (sheetRef) sheetRef.current?.dismiss();
+
     closeModal();
   };
 

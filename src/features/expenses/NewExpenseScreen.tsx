@@ -44,6 +44,7 @@ const NewExpenseScreen: React.FC<NewExpenseScreenProps> = () => {
       quantity: product.quantity,
       name: product.name,
       imageUrl: product.imageUrl,
+      sheetRef: addProductSheetRef,
     });
   };
 
@@ -65,15 +66,13 @@ const NewExpenseScreen: React.FC<NewExpenseScreenProps> = () => {
   };
 
   return (
-    <View style={{ paddingHorizontal: 28, marginTop: 50, flex: 1 }} edges={['top', 'left', 'right']}>
-      <Text style={{ fontSize: fontSize.large, fontWeight: 'bold', marginBottom: 30 }}>💰 Novi trošak</Text>
-      <ScrollView style={{ flex: 1 }} showsVerticalScrollIndicator={false} contentContainerStyle={{ paddingBottom: insets.bottom + 30 }}>
-        {/* Total */}
-
-        <View style={{ backgroundColor: colors.white, paddingHorizontal: 20, paddingVertical: 22, borderRadius: 20 }}>
+    <View style={styles.container}>
+      <Text style={styles.newExpense}>💰 Novi trošak</Text>
+      <ScrollView style={styles.flex} showsVerticalScrollIndicator={false} contentContainerStyle={{ paddingBottom: insets.bottom + 30 }}>
+        <View style={styles.topCard}>
           <View>
-            <Text style={{ fontWeight: 'bold', fontSize: fontSize.large, marginBottom: 5 }}>{totalAmount} HRK</Text>
-            <Text style={{ color: colors.gray, fontSize: fontSize.small }}>Ukupan iznos</Text>
+            <Text style={styles.totalAmount}>{totalAmount} HRK</Text>
+            <Text style={styles.totalAmountText}>Ukupan iznos</Text>
           </View>
           <Space height={20} />
 
@@ -81,33 +80,22 @@ const NewExpenseScreen: React.FC<NewExpenseScreenProps> = () => {
             title="Podijeli trošak"
             variant="secondary"
             icon={SplitIcon}
-            containerStyle={{ alignSelf: 'flex-start', paddingHorizontal: 20 }}
-            textStyle={{ fontWeight: '500' }}
+            containerStyle={styles.splitExpense}
+            textStyle={styles.splitExpenseText}
             onPress={() => splitExpensesSheetRef.current?.present()}
           />
         </View>
         <Space height={30} />
-        {/* <Text style={styles.subtitle}>Trošak dijele</Text>
-        <Space height={16} />
-        <ExpenseParticipant />
-        <ExpenseParticipant />
-        <ExpenseParticipant />
-        <Space height={20} /> */}
 
-        <View style={{ flexDirection: 'row', alignItems: 'center', justifyContent: 'space-between', marginBottom: 20 }}>
+        <View style={styles.itemsSection}>
           <Text style={styles.subtitle}>Stavke</Text>
           <ActionButton icon={PlusIcon} onPress={() => addProductSheetRef.current?.present()} />
         </View>
         {items.map((item) => (
           <ListItem key={item._id} item={item} />
         ))}
-        {/* <ListItem />
-        <ListItem />
-        <ListItem />
-        <ListItem />
-        <ListItem /> */}
       </ScrollView>
-      <Button title="Spremi trošak" variant="primary" containerStyle={{ marginBottom: 20 }} onPress={handleCreateNewExpense} />
+      <Button title="Spremi trošak" variant="primary" containerStyle={styles.save} onPress={handleCreateNewExpense} />
       <AddProductSheet sheetRef={addProductSheetRef} onSelected={onProductSelected} />
       <SplitExpensesSheet sheetRef={splitExpensesSheetRef} />
     </View>
@@ -118,6 +106,50 @@ const styles = StyleSheet.create({
   subtitle: {
     fontWeight: 'bold',
     fontSize: fontSize.normal,
+  },
+  container: {
+    paddingHorizontal: 28,
+    marginTop: 50,
+    flex: 1,
+  },
+  flex: {
+    flex: 1,
+  },
+  newExpense: {
+    fontSize: fontSize.large,
+    fontWeight: 'bold',
+    marginBottom: 30,
+  },
+  topCard: {
+    backgroundColor: colors.white,
+    paddingHorizontal: 20,
+    paddingVertical: 22,
+    borderRadius: 20,
+  },
+  totalAmount: {
+    fontWeight: 'bold',
+    fontSize: fontSize.large,
+    marginBottom: 5,
+  },
+  totalAmountText: {
+    color: colors.gray,
+    fontSize: fontSize.small,
+  },
+  splitExpense: {
+    alignSelf: 'flex-start',
+    paddingHorizontal: 20,
+  },
+  splitExpenseText: {
+    fontWeight: '500',
+  },
+  itemsSection: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    justifyContent: 'space-between',
+    marginBottom: 20,
+  },
+  save: {
+    marginBottom: 20,
   },
 });
 
