@@ -36,10 +36,10 @@ const DashboardScreen = () => {
             <Text style={{ fontWeight: '500', fontSize: fontSize.mediumLarge }}>104 HRK</Text>
             <ActionButton icon={PlusIcon} iconSize={28} />
           </View>
-          <Text style={{ color: colors.gray }}>Potrošnja ovaj mjesec</Text>
+          <Text style={{ color: colors.gray, marginBottom: 10 }}>Potrošnja ovaj mjesec</Text>
 
           <View>
-            <VictoryChart width={300} padding={{ left: 10, right: 20, bottom: 30 }} height={200}>
+            <VictoryChart width={300} padding={{ left: 30, right: 20, bottom: 30 }} height={200}>
               <VictoryAxis
                 style={{
                   grid: { stroke: 'none' },
@@ -48,6 +48,17 @@ const DashboardScreen = () => {
                 }}
                 tickCount={6}
                 tickFormat={(value) => dayjs().month(value).locale('hr').format('MMM')}
+              />
+              <VictoryAxis
+                dependentAxis
+                tickFormat={(label) => label}
+                style={{
+                  axis: { stroke: 'none' },
+                  tickLabels: {
+                    fill: colors.gray,
+                    padding: 10,
+                  },
+                }}
               />
               <VictoryLine
                 interpolation={'basis'}
@@ -116,7 +127,7 @@ const DashboardScreen = () => {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    // paddingHorizontal: 28,
+
     paddingTop: 50,
   },
   title: {
