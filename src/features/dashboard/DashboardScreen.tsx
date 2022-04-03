@@ -14,10 +14,18 @@ import { VictoryAxis, VictoryChart, VictoryLine, VictoryTheme } from 'victory-na
 import Icon from '../../common/components/Icon';
 import { ListItem } from '../shopping-list/components';
 import useUser from '../../common/hooks/useUser';
+import { useQuery } from 'react-query';
+import { getDashboard } from './api';
+import dayjs from 'dayjs';
 
 const DashboardScreen = () => {
   const { openModal } = useModal();
   const user = useUser();
+  const { data } = useQuery('dashboard', () => getDashboard(user?._id), {
+    enabled: !!user,
+  });
+
+  console.log(data);
 
   return (
     <View style={styles.container}>
@@ -38,8 +46,8 @@ const DashboardScreen = () => {
                   axis: { stroke: 'none' },
                   tickLabels: { fill: colors.gray },
                 }}
-                tickCount={4}
-                // tickFormat={(value) => value.toFixed(0)}
+                tickCount={6}
+                tickFormat={(value) => dayjs().month(value).locale('hr').format('MMM')}
               />
               <VictoryLine
                 interpolation={'basis'}
@@ -47,14 +55,9 @@ const DashboardScreen = () => {
                   data: { stroke: colors.green },
                   parent: { border: '1px solid #ccc' },
                 }}
-                data={[
-                  { x: 'Sij', y: 350 },
-                  { x: 'Velj', y: 380 },
-                  { x: 'Ozu', y: 420 },
-                  { x: 'Tra', y: 380 },
-                  { x: 'Svi', y: 450 },
-                  { x: 'Lip', y: 380 },
-                ]}
+                x="month"
+                y="amount"
+                data={data.graphData}
               />
             </VictoryChart>
           </View>
@@ -62,13 +65,13 @@ const DashboardScreen = () => {
 
         <Card>
           <View style={{ flexDirection: 'row', justifyContent: 'space-between', alignItems: 'center' }}>
-            <Text style={{ fontWeight: '500', fontSize: fontSize.mediumLarge }}>76 HRK</Text>
+            <Text style={{ fontWeight: '500', fontSize: fontSize.mediumLarge }}>{data.monthlyBudget - data.currentMonthExpenses} HRK</Text>
             <ActionButton icon={PencilIcon} onPress={() => openModal('ChangeBudgetModal')} />
           </View>
           <Text style={{ color: colors.gray }}>Preostalo od mjesečnog budžeta</Text>
           <Space height={10} />
 
-          <Progress progress={50} endValue={200} />
+          <Progress progress={data.currentMonthExpenses / data.monthlyBudget} endValue={data.monthlyBudget} />
         </Card>
 
         <Card>
