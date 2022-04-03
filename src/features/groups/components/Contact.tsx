@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React from 'react';
 import { View, Text, TouchableOpacity } from 'react-native';
 import { CheckCircleIcon } from '../../../common/assets/icons';
 
@@ -10,16 +10,14 @@ import { fontSize } from '../../../constants/typography';
 import { Contact as ContactType } from '../types';
 
 interface ContactProps {
+  selected: boolean;
   contact: ContactType;
+  onPress: () => void;
 }
 
-const Contact: React.FunctionComponent<ContactProps> = ({ contact }) => {
-  const [selected, setSelected] = useState<boolean>(false);
-
+const Contact: React.FunctionComponent<ContactProps> = ({ selected, contact, onPress }) => {
   return (
-    <TouchableOpacity
-      style={{ flexDirection: 'row', alignItems: 'center', justifyContent: 'space-between' }}
-      onPress={() => setSelected(!selected)}>
+    <TouchableOpacity style={{ flexDirection: 'row', alignItems: 'center', justifyContent: 'space-between' }} onPress={onPress}>
       <View style={{ flexDirection: 'row', alignItems: 'center' }}>
         <Avatar name={`${contact.firstName} ${contact.lastName}`} style={{ marginRight: 20 }} />
         <View>

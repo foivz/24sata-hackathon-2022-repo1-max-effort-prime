@@ -6,14 +6,16 @@ import Space from './Space';
 import colors from '../../constants/colors';
 
 interface ProgressProps {
+  progress: number;
   endValue: number;
 }
 
-const Progress: React.FC<ProgressProps> = ({ endValue }) => {
+const Progress: React.FC<ProgressProps> = ({ progress, endValue }) => {
+  console.log('Progress', progress);
   return (
     <View>
       <View style={{ height: 10, backgroundColor: colors.lynxWhite, borderRadius: 20, width: '100%' }}>
-        <View style={{ height: 10, backgroundColor: colors.green, borderRadius: 20, width: '60%' }} />
+        <View style={{ height: 10, backgroundColor: colors.green, borderRadius: 20, width: `${progress}%` }} />
       </View>
       <Space height={10} />
       <View style={{ flexDirection: 'row', alignItems: 'center', justifyContent: 'space-between' }}>

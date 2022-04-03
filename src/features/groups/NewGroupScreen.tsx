@@ -28,8 +28,6 @@ const NewGroupScreen: React.FC<NewGroupScreenProps> = () => {
       </View>
       <Space height={30} />
 
-      <GroupMember name="Filip Bel" />
-
       <Space height={40} />
 
       <Space height={15} />

@@ -68,13 +68,13 @@ const DashboardScreen = () => {
           <Text style={{ color: colors.gray }}>Preostalo od mjesečnog budžeta</Text>
           <Space height={10} />
 
-          <Progress endValue={200} />
+          <Progress progress={50} endValue={200} />
         </Card>
 
         <Card>
           <View style={{ flexDirection: 'row' }}>
             <Text style={{ flex: 1, fontSize: fontSize.small, marginBottom: 12 }}>
-              Ovaj mjesec još nisi kupio proizvode sa liste za kupnju!
+              Ovaj tjedan još nisi kupio proizvode sa liste za kupnju!
             </Text>
             <Icon icon={ChevronRightIcon} width={25} height={25} stroke={colors.green} />
           </View>

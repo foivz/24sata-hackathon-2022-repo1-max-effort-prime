@@ -18,7 +18,7 @@ const GroupDetailsSheet: React.FunctionComponent<GroupDetailsSheetProps> = ({ sh
       enablePanDownToClose
       handleComponent={() => null}
       backdropComponent={(props) => <BottomSheetBackdrop disappearsOnIndex={-1} appearsOnIndex={0} {...props} />}
-      style={{ paddingHorizontal: 20, paddingTop: 30 }}>
+      style={{ paddingHorizontal: 10, paddingTop: 10 }}>
       <SheetContent />
     </BottomSheetModal>
   );

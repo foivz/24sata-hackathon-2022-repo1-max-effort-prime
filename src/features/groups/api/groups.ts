@@ -5,6 +5,11 @@ export const getGroups = async (userId: string) => {
   return response.data.data;
 };
 
+export const getAllUsers = async () => {
+  const response = await api.get('/users/');
+  return response.data.data;
+};
+
 export const getGroupMembers = async (groupId: string) => {
   const response = await api.get(`/groups/${groupId}/members`);
   return response.data.data;

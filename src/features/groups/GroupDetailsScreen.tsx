@@ -55,9 +55,11 @@ const GroupDetailsScreen: React.FC<GroupDetailsScreenProps> = () => {
         <ActionButton icon={PencilIcon} onPress={() => openModal('ChangeBudgetModal')} />
       </View>
       <Space height={15} />
-      <Text style={{ fontWeight: '500', fontSize: fontSize.medium }}>76 HRK</Text>
+      <Text style={{ fontWeight: '500', fontSize: fontSize.medium }}>
+        {activeGroup.monthlyBudget - activeGroup.currentGroupExpenses} HRK
+      </Text>
       <Text style={{ marginVertical: 10, color: colors.gray }}>Preostalo od mjesečnog budžeta</Text>
-      <Progress endValue={activeGroup.monthlyBudget} />
+      <Progress progress={1 - activeGroup.currentGroupExpenses / activeGroup.monthlyBudget} endValue={activeGroup.monthlyBudget} />
     </ScrollView>
   );
 };
