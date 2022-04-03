@@ -18,7 +18,7 @@ const Group: React.FunctionComponent<GroupProps> = ({ group }) => {
   const navigation = useNavigation();
 
   return (
-    <TouchableOpacity onPress={() => navigation.navigate(screen.SPLIT_EXPENSES_SHEET_PRICES)}>
+    <TouchableOpacity onPress={() => navigation.navigate(screen.SPLIT_EXPENSES_SHEET_PRICES, { group })}>
       <Text style={{ color: colors.black, fontWeight: 'bold', fontSize: fontSize.normal, marginBottom: 12 }}>{group.name}</Text>
       <View style={{ flexDirection: 'row', alignItems: 'center', justifyContent: 'space-between' }}>
         <View style={{ flexDirection: 'row', alignItems: 'center' }}>

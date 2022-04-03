@@ -1,7 +1,7 @@
 import React from 'react';
 import { View, Text, FlatList } from 'react-native';
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
-import { useNavigation } from '@react-navigation/native';
+import { useNavigation, useRoute } from '@react-navigation/native';
 import { useBottomSheetModal } from '@gorhom/bottom-sheet';
 
 import { ActionButton, Button, Divider, Space } from '../../../common/components';
@@ -21,6 +21,8 @@ const SplitExpensesPricesScreen: React.FunctionComponent<SplitExpensesPricesScre
   const navigation = useNavigation();
   const { dismiss } = useBottomSheetModal();
   const totalAmount = useAppSelector((state) => totalPriceSelector(state.expenses));
+  const route = useRoute();
+  const { group } = route.params;
 
   return (
     <View style={{ paddingBottom: insets.bottom + 35, justifyContent: 'space-between', flex: 1 }}>
@@ -44,21 +46,9 @@ const SplitExpensesPricesScreen: React.FunctionComponent<SplitExpensesPricesScre
         />
 
         <FlatList
-          data={[
-            {
-              id: '1',
-              name: 'Filip Bel',
-            },
-            {
-              id: '2',
-              name: 'Patik Galina',
-            },
-            {
-              id: '3',
-              name: 'Jakov Glavina',
-            },
-          ]}
-          renderItem={({ item }) => <Payer />}
+          data={group.members}
+          keyExtractor={(item) => item._id}
+          renderItem={({ item }) => <Payer payer={item} />}
           ItemSeparatorComponent={() => <Divider />}
         />
       </View>
