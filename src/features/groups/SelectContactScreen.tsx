@@ -11,6 +11,8 @@ import { fontSize } from '../../constants/typography';
 import { Contact as ContactType } from './types';
 import colors from '../../constants/colors';
 import { getAllUsers } from './api/groups';
+import { useAppDispatch } from '../../common/store';
+import { addMembers } from './store/groups';
 
 interface SelectContactScreenProps {}
 
@@ -19,6 +21,7 @@ const SelectContactScreen: React.FC<SelectContactScreenProps> = () => {
   const navigation = useNavigation();
   const [searchQuery, setSearchQuery] = useState<string>('');
   const [selectedContacts, setSelectedContacts] = useState<ContactType[]>([]);
+  const dispatch = useAppDispatch();
 
   const handleSelectContact = (contact) => {
     if (selectedContacts.find((c) => c.phoneNumber === contact.phoneNumber)) {
@@ -30,6 +33,8 @@ const SelectContactScreen: React.FC<SelectContactScreenProps> = () => {
 
   const handleAddContacts = () => {
     console.log('selected contacts', selectedContacts);
+    dispatch(addMembers(selectedContacts));
+    navigation.goBack();
   };
 
   useEffect(() => {

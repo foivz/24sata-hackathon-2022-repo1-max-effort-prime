@@ -1,5 +1,5 @@
 import React from 'react';
-import { View, Text, TouchableOpacity } from 'react-native';
+import { View, Text, TouchableOpacity, StyleSheet } from 'react-native';
 import { CheckCircleIcon } from '../../../common/assets/icons';
 
 import { Avatar } from '../../../common/components';
@@ -17,11 +17,11 @@ interface ContactProps {
 
 const Contact: React.FunctionComponent<ContactProps> = ({ selected, contact, onPress }) => {
   return (
-    <TouchableOpacity style={{ flexDirection: 'row', alignItems: 'center', justifyContent: 'space-between' }} onPress={onPress}>
-      <View style={{ flexDirection: 'row', alignItems: 'center' }}>
-        <Avatar name={`${contact.firstName} ${contact.lastName}`} style={{ marginRight: 20 }} />
+    <TouchableOpacity style={styles.container} onPress={onPress}>
+      <View style={styles.leftSection}>
+        <Avatar name={`${contact.firstName} ${contact.lastName}`} style={styles.avatar} />
         <View>
-          <Text style={{ fontWeight: '500', fontSize: fontSize.small, marginBottom: 5 }}>
+          <Text style={styles.name}>
             {contact.firstName} {contact.lastName}
           </Text>
           <Text style={{ color: colors.gray }}>{contact.phoneNumber}</Text>
@@ -31,5 +31,25 @@ const Contact: React.FunctionComponent<ContactProps> = ({ selected, contact, onP
     </TouchableOpacity>
   );
 };
+
+const styles = StyleSheet.create({
+  container: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    justifyContent: 'space-between',
+  },
+  avatar: {
+    marginRight: 20,
+  },
+  leftSection: {
+    flexDirection: 'row',
+    alignItems: 'center',
+  },
+  name: {
+    fontWeight: '500',
+    fontSize: fontSize.small,
+    marginBottom: 5,
+  },
+});
 
 export default Contact;
