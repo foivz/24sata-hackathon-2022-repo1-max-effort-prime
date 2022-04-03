@@ -11,6 +11,8 @@ import { ArrowLeftIcon } from '../../../common/assets/icons';
 import colors from '../../../constants/colors';
 import { SplitIcon } from '../assets';
 import { fontSize } from '../../../constants/typography';
+import { useAppSelector } from '../../../common/store';
+import { totalPriceSelector } from '../store';
 
 interface SplitExpensesPricesScreenProps {}
 
@@ -18,6 +20,7 @@ const SplitExpensesPricesScreen: React.FunctionComponent<SplitExpensesPricesScre
   const insets = useSafeAreaInsets();
   const navigation = useNavigation();
   const { dismiss } = useBottomSheetModal();
+  const totalAmount = useAppSelector((state) => totalPriceSelector(state.expenses));
 
   return (
     <View style={{ paddingBottom: insets.bottom + 35, justifyContent: 'space-between', flex: 1 }}>
@@ -29,7 +32,7 @@ const SplitExpensesPricesScreen: React.FunctionComponent<SplitExpensesPricesScre
           onPress={() => navigation.goBack()}
         />
         <Space height={10} />
-        <Text style={{ fontWeight: 'bold', fontSize: fontSize.large, marginBottom: 10 }}>180 HRK</Text>
+        <Text style={{ fontWeight: 'bold', fontSize: fontSize.large, marginBottom: 10 }}>{totalAmount} HRK</Text>
         <Text style={{ color: colors.gray, marginBottom: 15, fontSize: fontSize.small }}>Ukupni trošak</Text>
         <Button
           title="Ravnomjerno podijeli"
